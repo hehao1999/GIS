@@ -96,7 +96,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseFuncs.cs" />
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>

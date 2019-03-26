@@ -35,7 +35,43 @@ namespace HMap
 
         private void file_new_Click(object sender, EventArgs e)
         {
-            BaseFuncs.NewMapDoc(this.Controls);
+            //BaseFuncs.NewMapDoc(this.Controls, mainMapControl);
+            try
+            {
+                
+                //实例化SaveFileDialog控件
+                SaveFileDialog pSaveFileDialog = new SaveFileDialog();
+                pSaveFileDialog.Title = "输入需要新建地图文档的名称";
+                pSaveFileDialog.Filter = "地图文件(*.mxd)|*.mxd";
+                pSaveFileDialog.OverwritePrompt = true;
+                pSaveFileDialog.RestoreDirectory = true;
+
+                if (pSaveFileDialog.ShowDialog() == DialogResult.OK)
+                {//保存并打开地图文档
+                    string filename = pSaveFileDialog.FileName;
+                    IMapDocument pMapDocument = new MapDocumentClass();
+                    pMapDocument.New(filename);
+                    mainMapControl.LoadMxFile(filename);
+
+                    //将图层名重设为“图层”
+                    mainMapControl.Map.Name = "图层";
+                    axTOCControl1.SetBuddyControl(mainMapControl);
+
+                    //关闭地图文档，防止发生冲突
+                    pMapDocument.Close();
+                    MessageBox.Show("新建地图文档成功!", "信息提示", MessageBoxButtons.OK);
+                    return;
+                }
+                else
+                {
+                    return;
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("新建地图文档失败！" + exc.Message, "信息提示", MessageBoxButtons.OK);
+                return;
+            }
         }
 
         #endregion 新建地图文档
@@ -95,7 +131,7 @@ namespace HMap
                     }
                 }
                 else
-                {
+                {//地图文档为空，创建地图文档
                     //实例化SaveFileDialog
                     SaveFileDialog pSaveFileDialog = new SaveFileDialog();
                     pSaveFileDialog.Title = "请选择保存路径";
@@ -114,7 +150,7 @@ namespace HMap
                     }
                 }
 
-                //保存地图文档
+                //统一保存地图文档
                 pMapDocument.New(filename);
                 pMapDocument.ReplaceContents(mainMapControl.Map as IMxdContents);
                 pMapDocument.Save(pMapDocument.UsesRelativePaths, true);

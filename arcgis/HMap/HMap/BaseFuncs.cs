@@ -6,7 +6,7 @@ namespace HMap
 {
     internal class BaseFuncs
     {
-        public static void NewMapDoc(Control.ControlCollection controls)
+        public static void NewMapDoc(Control.ControlCollection controls, ESRI.ArcGIS.Controls.AxMapControl mainMapControl)
         {
             try
             {
@@ -31,6 +31,8 @@ namespace HMap
                     axMapControl.Map = pMapDocument.get_Map(0);
                     axMapControl.DocumentFilename = pMapDocument.DocumentFilename;
                     pMapDocument.Close();
+                    mainMapControl.LoadMxFile(filename);
+                    mainMapControl.Refresh();
                     MessageBox.Show("新建地图文档成功!", "信息提示", MessageBoxButtons.OK);
                     return;
                 }
