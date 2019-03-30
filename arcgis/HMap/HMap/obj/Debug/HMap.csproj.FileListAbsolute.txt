@@ -4,7 +4,6 @@ H:\git\GIS\arcgis\HMap\HMap\bin\Debug\HMap.pdb
 H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.AxControls.dll
 H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Carto.dll
 H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Version.dll
-H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Geodatabase.dll
 H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.GeoDatabaseExtensions.dll
 H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.DataSourcesRaster.dll
 H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Server.dll
@@ -12,7 +11,6 @@ H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.GISClient.dll
 H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.DataSourcesFile.dll
 H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.GeoDatabaseDistributed.dll
 H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Carto.xml
-H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Geodatabase.xml
 H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.GeoDatabaseExtensions.xml
 H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.DataSourcesRaster.xml
 H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Server.xml
@@ -27,3 +25,18 @@ H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.csproj.CopyComplete
 H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.exe
 H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.pdb
 H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.mainForm.resources
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.AxPublisherControls.dll
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Controls.dll
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.NetworkAnalyst.dll
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Geoprocessing.dll
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.DataSourcesNetCDF.dll
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.GeoAnalyst.dll
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Controls.xml
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.NetworkAnalyst.xml
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Geoprocessing.xml
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.DataSourcesNetCDF.xml
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.GeoAnalyst.xml
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Display.dll
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Geometry.dll
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Display.xml
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Geometry.xml
