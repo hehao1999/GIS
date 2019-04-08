@@ -1,4 +1,5 @@
-﻿using ESRI.ArcGIS.Controls;
+﻿using ESRI.ArcGIS.Carto;
+using ESRI.ArcGIS.Controls;
 using ESRI.ArcGIS.Geometry;
 using ESRI.ArcGIS.SystemUI;
 using System;
@@ -10,6 +11,7 @@ namespace HMap
         //初始化
         public static mainForm mainform;  //实例化窗体
         public static CustomizeDialog m_CustomizeDialog; //自定义控件绑定
+        int flag = 0; //工具标志
 
         public mainForm()
         {
@@ -88,24 +90,6 @@ namespace HMap
             m_CustomizeDialog.StartDialog(axToolbarControl1.hWnd);
         }
 
-        //放大按钮按下
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            baseOrder.zoom_in();
-        }
-
-        //缩小按钮按下
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            baseOrder.zoom_out();
-        }
-
-        //全图按钮按下
-        private void toolStripButton3_Click(object sender, EventArgs e)
-        {
-            baseOrder.full_view();
-        }
-
         //开始鹰眼操作
         private void EagleEyeMapControl_OnMouseDown(object sender, IMapControlEvents2_OnMouseDownEvent e)
         {
@@ -118,7 +102,7 @@ namespace HMap
             baseOrder.SynchronizeEagleEye();
         }
 
-        //得到当前显示范围
+        //鹰眼得到当前显示范围
         private void mainMapControl_OnExtentUpdated(object sender, IMapControlEvents2_OnExtentUpdatedEvent e)
         {
             baseOrder.get_extent(e);
@@ -130,10 +114,66 @@ namespace HMap
             baseOrder.move_rect(e);
         }
 
-        //结束鹰眼操作
+        //结束对鹰眼操作
         private void EagleEyeMapControl_OnMouseUp(object sender, IMapControlEvents2_OnMouseUpEvent e)
         {
             baseOrder.end_move(e);
+        }
+        
+        //放大按钮按下
+        private void zoomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            flag = 0;
+            baseOrder.zoom_in();
+        }
+        
+        //缩小按钮按下
+        private void zoomOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            flag = 0;
+            baseOrder.zoom_out();
+        }
+
+        //全图按钮按下
+        private void fullExtentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            flag = 0;
+            baseOrder.full_view();
+        }
+
+        //拉框选择按钮按下
+        private void boxSelectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            flag = 1;
+        }
+
+        //拉框选择
+        private void mainMapControl_OnMouseDown(object sender, IMapControlEvents2_OnMouseDownEvent e)
+        {
+            if(flag == 1)
+                baseOrder.box_select(e);
+        }
+
+        //打开个人地理数据库
+        private void openFileDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            baseOrder.load_personal_database();
+        }
+
+        //清除选择
+        private void clearSelectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            baseOrder.clear_selection();
+        }
+
+        private void addRasterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            baseOrder.add_raster();
+        }
+
+        private void axTOCControl1_OnMouseDown(object sender, ITOCControlEvents_OnMouseDownEvent e)
+        {
+
         }
     }
 }

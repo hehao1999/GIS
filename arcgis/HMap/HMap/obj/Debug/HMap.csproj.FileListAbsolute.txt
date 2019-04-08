@@ -40,3 +40,12 @@ H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Display.dll
 H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Geometry.dll
 H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Display.xml
 H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Geometry.xml
+H:\git\GIS\arcgis\HMap\HMap\obj\Debug\Interop.esriSearch.dll
+H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.csproj.ResolveComReference.cache
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Geodatabase.dll
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.System.dll
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.SystemUI.dll
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\stdole.dll
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Geodatabase.xml
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.System.xml
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.SystemUI.xml

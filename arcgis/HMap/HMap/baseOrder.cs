@@ -5,15 +5,19 @@ using ESRI.ArcGIS.Controls;
 using ESRI.ArcGIS.SystemUI;
 using System.Windows.Forms;
 using ESRI.ArcGIS.Display;
+using ESRI.ArcGIS.Geodatabase;
+using ESRI.ArcGIS.DataSourcesGDB;
+using ESRI.ArcGIS.DataSourcesRaster;
 
 namespace HMap
 {
-    internal class baseOrder
+    public class baseOrder
     {
         //鹰眼同步
         private static bool bCanDrag;              //鹰眼地图上的矩形框可移动的标志
         private static IPoint pMoveRectPoint;      //记录在移动鹰眼地图上的矩形框时鼠标的位置
         private static IEnvelope pEnv;             //记录数据视图的Extent
+        public static IFeatureLayer pTocFeatureLayer = null;
 
         #region 退出程序
 
@@ -261,6 +265,48 @@ namespace HMap
 
         #endregion 加载Shapefile
 
+        #region 加载栅格数据
+        public static void add_raster()
+        {
+            OpenFileDialog pOpenFileDialog = new OpenFileDialog();
+            pOpenFileDialog.CheckFileExists = true;
+            pOpenFileDialog.Title = "打开Raster文件";
+            pOpenFileDialog.Filter = "栅格文件 (*.*)|*.bmp;*.tif;*.jpg;*.img|(*.bmp)|*.bmp|(*.tif)|*.tif|(*.jpg)|*.jpg|(*.img)|*.img";
+            pOpenFileDialog.ShowDialog();
+
+            string pRasterFileName = pOpenFileDialog.FileName;
+            if (pRasterFileName == "")
+            {
+                return;
+            }
+
+            string pPath = System.IO.Path.GetDirectoryName(pRasterFileName);
+            string pFileName = System.IO.Path.GetFileName(pRasterFileName);
+
+            IWorkspaceFactory pWorkspaceFactory = new RasterWorkspaceFactory();
+            IWorkspace pWorkspace = pWorkspaceFactory.OpenFromFile(pPath, 0);
+            IRasterWorkspace pRasterWorkspace = pWorkspace as IRasterWorkspace;
+            IRasterDataset pRasterDataset = pRasterWorkspace.OpenRasterDataset(pFileName);
+            //影像金字塔判断与创建
+            IRasterPyramid3 pRasPyrmid;
+            pRasPyrmid = pRasterDataset as IRasterPyramid3;
+            if (pRasPyrmid != null)
+            {
+                if (!(pRasPyrmid.Present))
+                {
+                    pRasPyrmid.Create(); //创建金字塔
+                }
+            }
+            IRaster pRaster;
+            pRaster = pRasterDataset.CreateDefaultRaster();
+            IRasterLayer pRasterLayer;
+            pRasterLayer = new RasterLayerClass();
+            pRasterLayer.CreateFromRaster(pRaster);
+            ILayer pLayer = pRasterLayer as ILayer;
+            mainForm.mainform.mainMapControl.AddLayer(pLayer, 0);
+        }
+        #endregion
+
         #region 删除顶层图层
 
         public static void del_top_layer()
@@ -355,7 +401,6 @@ namespace HMap
 
         #endregion 生成自定义控件窗口
 
-
         #region 放大、缩小、全局视图
         public static void zoom_in()
         {
@@ -424,7 +469,7 @@ namespace HMap
                 mainForm.mainform.EagleEyeMapControl.Extent = mainForm.mainform.mainMapControl.FullExtent;
                 pEnv = mainForm.mainform.mainMapControl.Extent as IEnvelope;
                 DrawRectangle(pEnv);
-                mainForm.mainform.EagleEyeMapControl.ActiveView.Refresh();
+               mainForm.mainform.EagleEyeMapControl.ActiveView.Refresh();
             }
         }
 
@@ -549,6 +594,173 @@ namespace HMap
                 }
                 bCanDrag = false;
             }
+        }
+        #endregion
+
+        #region 拉框选择
+        public static void box_select(IMapControlEvents2_OnMouseDownEvent e)
+        {
+            mainForm.mainform.mainMapControl.CurrentTool = null;
+            IMap pMap = mainForm.mainform.mainMapControl.Map;
+            IActiveView pActiveView = pMap as IActiveView;
+            IEnvelope pEnv = new EnvelopeClass();
+            pEnv = mainForm.mainform.mainMapControl.TrackRectangle();
+            pMap.SelectByShape(pEnv, null, false);
+            pActiveView.PartialRefresh(esriViewDrawPhase.esriViewGeoSelection, null, null);
+        }
+        #endregion
+
+        #region 打开个人地理数据库
+        public static void load_personal_database()
+        {//代开个人地理数据库
+            IWorkspaceFactory pAccessWorkspaceFactory;
+
+            OpenFileDialog pOpenFileDialog = new OpenFileDialog();
+            pOpenFileDialog.Filter = "Personal Geodatabase(*.mdb)|*.mdb";
+            pOpenFileDialog.Title = "打开PersonGeodatabase文件";
+            pOpenFileDialog.ShowDialog();
+
+            string pFullPath = pOpenFileDialog.FileName;
+            if (pFullPath == "")
+            {
+                return;
+            }
+            pAccessWorkspaceFactory = new AccessWorkspaceFactory();
+           
+            //获取工作空间
+            IWorkspace pWorkspace = pAccessWorkspaceFactory.OpenFromFile(pFullPath, 0);
+
+            //加载工作空间里的数据
+            AddAllDataset(pWorkspace, mainForm.mainform.mainMapControl);
+        }
+        private static void AddAllDataset(IWorkspace pWorkspace, AxMapControl mapControl)
+        {//遍历加载所有数据
+            IEnumDataset pEnumDataset = pWorkspace.get_Datasets(ESRI.ArcGIS.Geodatabase.esriDatasetType.esriDTAny);
+            pEnumDataset.Reset();
+            //将Enum数据集中的数据一个个读到DataSet中
+            IDataset pDataset = pEnumDataset.Next();
+            //判断数据集是否有数据
+            while (pDataset != null)
+            {
+                if (pDataset is IFeatureDataset)  //要素数据集
+                {
+                    IFeatureWorkspace pFeatureWorkspace = (IFeatureWorkspace)pWorkspace;
+                    IFeatureDataset pFeatureDataset = pFeatureWorkspace.OpenFeatureDataset(pDataset.Name);
+                    IEnumDataset pEnumDataset1 = pFeatureDataset.Subsets;
+                    pEnumDataset1.Reset();
+                    IGroupLayer pGroupLayer = new GroupLayerClass();
+                    pGroupLayer.Name = pFeatureDataset.Name;
+                    IDataset pDataset1 = pEnumDataset1.Next();
+                    while (pDataset1 != null)
+                    {
+                        if (pDataset1 is IFeatureClass)  //要素类
+                        {
+                            IFeatureLayer pFeatureLayer = new FeatureLayerClass();
+                            pFeatureLayer.FeatureClass = pFeatureWorkspace.OpenFeatureClass(pDataset1.Name);
+                            if (pFeatureLayer.FeatureClass != null)
+                            {
+                                pFeatureLayer.Name = pFeatureLayer.FeatureClass.AliasName;
+                                pGroupLayer.Add(pFeatureLayer);
+                                mapControl.Map.AddLayer(pFeatureLayer);
+                            }
+                        }
+                        pDataset1 = pEnumDataset1.Next();
+                    }
+                }
+                else if (pDataset is IFeatureClass) //要素类
+                {
+                    IFeatureWorkspace pFeatureWorkspace = (IFeatureWorkspace)pWorkspace;
+                    IFeatureLayer pFeatureLayer = new FeatureLayerClass();
+                    pFeatureLayer.FeatureClass = pFeatureWorkspace.OpenFeatureClass(pDataset.Name);
+
+                    pFeatureLayer.Name = pFeatureLayer.FeatureClass.AliasName;
+                    mapControl.Map.AddLayer(pFeatureLayer);
+                }
+                else if (pDataset is IRasterDataset) //栅格数据集
+                {
+                    IRasterWorkspaceEx pRasterWorkspace = (IRasterWorkspaceEx)pWorkspace;
+                    IRasterDataset pRasterDataset = pRasterWorkspace.OpenRasterDataset(pDataset.Name);
+                    //影像金字塔判断与创建
+                    IRasterPyramid3 pRasPyrmid;
+                    pRasPyrmid = pRasterDataset as IRasterPyramid3;
+                    if (pRasPyrmid != null)
+                    {
+                        if (!(pRasPyrmid.Present))
+                        {
+                            pRasPyrmid.Create(); //创建金字塔
+                        }
+                    }
+                    IRasterLayer pRasterLayer = new RasterLayerClass();
+                    pRasterLayer.CreateFromDataset(pRasterDataset);
+                    ILayer pLayer = pRasterLayer as ILayer;
+                    mapControl.AddLayer(pLayer, 0);
+                }
+                pDataset = pEnumDataset.Next();
+            }
+
+            mapControl.ActiveView.Refresh();
+            //同步鹰眼
+            SynchronizeEagleEye();
+        }
+        #endregion
+
+        #region 清除选择
+        public static void clear_selection()
+        {
+            IActiveView pActiveView = mainForm.mainform.mainMapControl.ActiveView;
+            pActiveView.FocusMap.ClearSelection();
+            pActiveView.PartialRefresh(esriViewDrawPhase.esriViewGeoSelection, null, pActiveView.Extent);
+        }
+        #endregion
+
+        #region 拖动控制图层顺序
+        
+        public static void move_layer_mouse_down(ITOCControlEvents_OnMouseDownEvent e)
+        {/*
+            try
+            {
+                if (e.button == 2)
+                {
+                    esriTOCControlItem pItem = esriTOCControlItem.esriTOCControlItemNone;
+                    IBasicMap pMap = null;
+                    ILayer pLayer = null;
+                    object unk = null;
+                    object data = null;
+                    mainForm.mainform.axTOCControl1.HitTest(e.x, e.y, ref pItem, ref pMap, ref pLayer, ref unk, ref data);
+                    baseOrder.pTocFeatureLayer = pLayer as IFeatureLayer;
+                    if (pItem == esriTOCControlItem.esriTOCControlItemLayer && pTocFeatureLayer != null)
+                    {
+                        btnLayerSel.Enabled = !pTocFeatureLayer.Selectable;
+                        btnLayerUnSel.Enabled = pTocFeatureLayer.Selectable;
+                        contextMenuStrip.Show(Control.MousePosition);
+                    }
+                }
+                if (e.button == 1)
+                {
+                    esriTOCControlItem pItem = esriTOCControlItem.esriTOCControlItemNone;
+                    IBasicMap pMap = null; object unk = null;
+                    object data = null; ILayer pLayer = null;
+                    mainForm.mainform.axTOCControl1.HitTest(e.x, e.y, ref pItem, ref pMap, ref pLayer, ref unk, ref data);
+                    if (pLayer == null) return;
+
+                    pMoveLayerPoint.PutCoords(e.x, e.y);
+                    if (pItem == esriTOCControlItem.esriTOCControlItemLayer)
+                    {
+                        if (pLayer is IAnnotationSublayer)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            pMoveLayer = pLayer;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }*/
         }
         #endregion
     }
