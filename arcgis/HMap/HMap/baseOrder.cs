@@ -712,56 +712,5 @@ namespace HMap
             pActiveView.PartialRefresh(esriViewDrawPhase.esriViewGeoSelection, null, pActiveView.Extent);
         }
         #endregion
-
-        #region 拖动控制图层顺序
-        
-        public static void move_layer_mouse_down(ITOCControlEvents_OnMouseDownEvent e)
-        {/*
-            try
-            {
-                if (e.button == 2)
-                {
-                    esriTOCControlItem pItem = esriTOCControlItem.esriTOCControlItemNone;
-                    IBasicMap pMap = null;
-                    ILayer pLayer = null;
-                    object unk = null;
-                    object data = null;
-                    mainForm.mainform.axTOCControl1.HitTest(e.x, e.y, ref pItem, ref pMap, ref pLayer, ref unk, ref data);
-                    baseOrder.pTocFeatureLayer = pLayer as IFeatureLayer;
-                    if (pItem == esriTOCControlItem.esriTOCControlItemLayer && pTocFeatureLayer != null)
-                    {
-                        btnLayerSel.Enabled = !pTocFeatureLayer.Selectable;
-                        btnLayerUnSel.Enabled = pTocFeatureLayer.Selectable;
-                        contextMenuStrip.Show(Control.MousePosition);
-                    }
-                }
-                if (e.button == 1)
-                {
-                    esriTOCControlItem pItem = esriTOCControlItem.esriTOCControlItemNone;
-                    IBasicMap pMap = null; object unk = null;
-                    object data = null; ILayer pLayer = null;
-                    mainForm.mainform.axTOCControl1.HitTest(e.x, e.y, ref pItem, ref pMap, ref pLayer, ref unk, ref data);
-                    if (pLayer == null) return;
-
-                    pMoveLayerPoint.PutCoords(e.x, e.y);
-                    if (pItem == esriTOCControlItem.esriTOCControlItemLayer)
-                    {
-                        if (pLayer is IAnnotationSublayer)
-                        {
-                            return;
-                        }
-                        else
-                        {
-                            pMoveLayer = pLayer;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }*/
-        }
-        #endregion
     }
 }

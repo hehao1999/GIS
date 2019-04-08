@@ -166,14 +166,10 @@ namespace HMap
             baseOrder.clear_selection();
         }
 
+        //添加栅格数据
         private void addRasterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             baseOrder.add_raster();
-        }
-
-        private void axTOCControl1_OnMouseDown(object sender, ITOCControlEvents_OnMouseDownEvent e)
-        {
-
         }
     }
 }
