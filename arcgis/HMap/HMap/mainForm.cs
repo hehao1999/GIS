@@ -10,8 +10,9 @@ namespace HMap
     {
         //初始化
         public static mainForm mainform;  //实例化窗体
+
         public static CustomizeDialog m_CustomizeDialog; //自定义控件绑定
-        int flag = 0; //工具标志
+        private int flag = 0; //工具标志
 
         public mainForm()
         {
@@ -119,14 +120,14 @@ namespace HMap
         {
             baseOrder.end_move(e);
         }
-        
+
         //放大按钮按下
         private void zoomToolStripMenuItem_Click(object sender, EventArgs e)
         {
             flag = 0;
             baseOrder.zoom_in();
         }
-        
+
         //缩小按钮按下
         private void zoomOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -170,6 +171,13 @@ namespace HMap
         private void addRasterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             baseOrder.add_raster();
+        }
+
+        private void layManageWindowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            layerManageForm f = new layerManageForm();
+            f.Owner = this;
+            f.Show();
         }
     }
 }

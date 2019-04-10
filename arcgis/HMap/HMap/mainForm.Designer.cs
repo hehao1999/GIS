@@ -49,6 +49,7 @@
             this.clearAllLayersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveLayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customizesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.layManageWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zoomOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -195,7 +196,8 @@
             this.deleteLayerToolStripMenuItem,
             this.clearAllLayersToolStripMenuItem,
             this.moveLayerToolStripMenuItem,
-            this.customizesToolStripMenuItem});
+            this.customizesToolStripMenuItem,
+            this.layManageWindowToolStripMenuItem});
             this.layManag_menu.Name = "layManag_menu";
             this.layManag_menu.Size = new System.Drawing.Size(119, 27);
             this.layManag_menu.Text = "Lay Manage";
@@ -203,44 +205,51 @@
             // addLayerToolStripMenuItem
             // 
             this.addLayerToolStripMenuItem.Name = "addLayerToolStripMenuItem";
-            this.addLayerToolStripMenuItem.Size = new System.Drawing.Size(225, 28);
+            this.addLayerToolStripMenuItem.Size = new System.Drawing.Size(246, 28);
             this.addLayerToolStripMenuItem.Text = "Add Layer";
             this.addLayerToolStripMenuItem.Click += new System.EventHandler(this.addLayerToolStripMenuItem_Click);
             // 
             // addShapefileToolStripMenuItem
             // 
             this.addShapefileToolStripMenuItem.Name = "addShapefileToolStripMenuItem";
-            this.addShapefileToolStripMenuItem.Size = new System.Drawing.Size(225, 28);
+            this.addShapefileToolStripMenuItem.Size = new System.Drawing.Size(246, 28);
             this.addShapefileToolStripMenuItem.Text = "Add Shapefile";
             this.addShapefileToolStripMenuItem.Click += new System.EventHandler(this.addShapefileToolStripMenuItem_Click);
             // 
             // deleteLayerToolStripMenuItem
             // 
             this.deleteLayerToolStripMenuItem.Name = "deleteLayerToolStripMenuItem";
-            this.deleteLayerToolStripMenuItem.Size = new System.Drawing.Size(225, 28);
+            this.deleteLayerToolStripMenuItem.Size = new System.Drawing.Size(246, 28);
             this.deleteLayerToolStripMenuItem.Text = "Delete Top Layer";
             this.deleteLayerToolStripMenuItem.Click += new System.EventHandler(this.deleteLayerToolStripMenuItem_Click);
             // 
             // clearAllLayersToolStripMenuItem
             // 
             this.clearAllLayersToolStripMenuItem.Name = "clearAllLayersToolStripMenuItem";
-            this.clearAllLayersToolStripMenuItem.Size = new System.Drawing.Size(225, 28);
+            this.clearAllLayersToolStripMenuItem.Size = new System.Drawing.Size(246, 28);
             this.clearAllLayersToolStripMenuItem.Text = "Clear All Layers";
             this.clearAllLayersToolStripMenuItem.Click += new System.EventHandler(this.clearAllLayersToolStripMenuItem_Click);
             // 
             // moveLayerToolStripMenuItem
             // 
             this.moveLayerToolStripMenuItem.Name = "moveLayerToolStripMenuItem";
-            this.moveLayerToolStripMenuItem.Size = new System.Drawing.Size(225, 28);
+            this.moveLayerToolStripMenuItem.Size = new System.Drawing.Size(246, 28);
             this.moveLayerToolStripMenuItem.Text = "Move Last Layer";
             this.moveLayerToolStripMenuItem.Click += new System.EventHandler(this.moveLayerToolStripMenuItem_Click);
             // 
             // customizesToolStripMenuItem
             // 
             this.customizesToolStripMenuItem.Name = "customizesToolStripMenuItem";
-            this.customizesToolStripMenuItem.Size = new System.Drawing.Size(225, 28);
+            this.customizesToolStripMenuItem.Size = new System.Drawing.Size(246, 28);
             this.customizesToolStripMenuItem.Text = "Customizes";
             this.customizesToolStripMenuItem.Click += new System.EventHandler(this.customizesToolStripMenuItem_Click);
+            // 
+            // layManageWindowToolStripMenuItem
+            // 
+            this.layManageWindowToolStripMenuItem.Name = "layManageWindowToolStripMenuItem";
+            this.layManageWindowToolStripMenuItem.Size = new System.Drawing.Size(246, 28);
+            this.layManageWindowToolStripMenuItem.Text = "Lay Manage window";
+            this.layManageWindowToolStripMenuItem.Click += new System.EventHandler(this.layManageWindowToolStripMenuItem_Click);
             // 
             // customToolsToolStripMenuItem
             // 
@@ -397,6 +406,7 @@
         private System.Windows.Forms.ToolStripMenuItem clearSelectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addRasterToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem layManageWindowToolStripMenuItem;
     }
 }
 

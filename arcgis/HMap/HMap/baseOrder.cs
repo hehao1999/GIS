@@ -1,13 +1,13 @@
-﻿using ESRI.ArcGIS.Geometry;
-using ESRI.ArcGIS.Carto;
-using System;
+﻿using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.Controls;
-using ESRI.ArcGIS.SystemUI;
-using System.Windows.Forms;
-using ESRI.ArcGIS.Display;
-using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.DataSourcesGDB;
 using ESRI.ArcGIS.DataSourcesRaster;
+using ESRI.ArcGIS.Display;
+using ESRI.ArcGIS.Geodatabase;
+using ESRI.ArcGIS.Geometry;
+using ESRI.ArcGIS.SystemUI;
+using System;
+using System.Windows.Forms;
 
 namespace HMap
 {
@@ -15,6 +15,7 @@ namespace HMap
     {
         //鹰眼同步
         private static bool bCanDrag;              //鹰眼地图上的矩形框可移动的标志
+
         private static IPoint pMoveRectPoint;      //记录在移动鹰眼地图上的矩形框时鼠标的位置
         private static IEnvelope pEnv;             //记录数据视图的Extent
         public static IFeatureLayer pTocFeatureLayer = null;
@@ -46,11 +47,13 @@ namespace HMap
             try
             {
                 //实例化SaveFileDialog控件
-                SaveFileDialog pSaveFileDialog = new SaveFileDialog();
-                pSaveFileDialog.Title = "输入需要新建地图文档的名称";
-                pSaveFileDialog.Filter = "地图文件(*.mxd)|*.mxd";
-                pSaveFileDialog.OverwritePrompt = true;
-                pSaveFileDialog.RestoreDirectory = true;
+                SaveFileDialog pSaveFileDialog = new SaveFileDialog
+                {
+                    Title = "输入需要新建地图文档的名称",
+                    Filter = "地图文件(*.mxd)|*.mxd",
+                    OverwritePrompt = true,
+                    RestoreDirectory = true
+                };
 
                 if (pSaveFileDialog.ShowDialog() == DialogResult.OK)
                 {//保存并打开地图文档
@@ -89,11 +92,13 @@ namespace HMap
             try
             {
                 //实例化OpenFileDialog控件
-                OpenFileDialog pOpenFileDialog = new OpenFileDialog();
-                pOpenFileDialog.CheckFileExists = true;
-                pOpenFileDialog.RestoreDirectory = true;
-                pOpenFileDialog.Title = "打开地图文档";
-                pOpenFileDialog.Filter = "ArcMap文档(*.mxd)|*.mxd";
+                OpenFileDialog pOpenFileDialog = new OpenFileDialog
+                {
+                    CheckFileExists = true,
+                    RestoreDirectory = true,
+                    Title = "打开地图文档",
+                    Filter = "ArcMap文档(*.mxd)|*.mxd"
+                };
 
                 if (pOpenFileDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -139,11 +144,13 @@ namespace HMap
                 else
                 {//地图文档为空，创建地图文档
                     //实例化SaveFileDialog
-                    SaveFileDialog pSaveFileDialog = new SaveFileDialog();
-                    pSaveFileDialog.Title = "请选择保存路径";
-                    pSaveFileDialog.OverwritePrompt = true;
-                    pSaveFileDialog.RestoreDirectory = true;
-                    pSaveFileDialog.Filter = "ArcMap文档（*.mxd）|*.mxd";
+                    SaveFileDialog pSaveFileDialog = new SaveFileDialog
+                    {
+                        Title = "请选择保存路径",
+                        OverwritePrompt = true,
+                        RestoreDirectory = true,
+                        Filter = "ArcMap文档（*.mxd）|*.mxd"
+                    };
 
                     if (pSaveFileDialog.ShowDialog() == DialogResult.OK)
                     {
@@ -178,11 +185,13 @@ namespace HMap
             try
             {
                 //实例化SaveFileDialog
-                SaveFileDialog pSaveFileDialog = new SaveFileDialog();
-                pSaveFileDialog.Filter = "地图文档文件（*.mxd）|*.mxd";
-                pSaveFileDialog.Title = "选择保存路径";
-                pSaveFileDialog.OverwritePrompt = true;
-                pSaveFileDialog.RestoreDirectory = true;
+                SaveFileDialog pSaveFileDialog = new SaveFileDialog
+                {
+                    Filter = "地图文档文件（*.mxd）|*.mxd",
+                    Title = "选择保存路径",
+                    OverwritePrompt = true,
+                    RestoreDirectory = true
+                };
 
                 if (pSaveFileDialog.ShowDialog() == DialogResult.OK)
                 {//保存地图文档
@@ -214,11 +223,13 @@ namespace HMap
         {
             try
             {
-                OpenFileDialog pOpenFileDialog = new OpenFileDialog();
-                pOpenFileDialog.Title = "加载图层文件";
-                pOpenFileDialog.Filter = "Map Layers(*.lyr)|*.lyr";
-                pOpenFileDialog.CheckFileExists = true;
-                pOpenFileDialog.RestoreDirectory = true;
+                OpenFileDialog pOpenFileDialog = new OpenFileDialog
+                {
+                    Title = "加载图层文件",
+                    Filter = "Map Layers(*.lyr)|*.lyr",
+                    CheckFileExists = true,
+                    RestoreDirectory = true
+                };
                 if (pOpenFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string filename = pOpenFileDialog.FileName;
@@ -241,11 +252,13 @@ namespace HMap
         {
             try
             {
-                OpenFileDialog pOpenFileDialog = new OpenFileDialog();
-                pOpenFileDialog.Title = "打开Shapefile文件";
-                pOpenFileDialog.Filter = "Shape Files(*.shp)|*.shp";
-                pOpenFileDialog.CheckFileExists = true;
-                pOpenFileDialog.RestoreDirectory = true;
+                OpenFileDialog pOpenFileDialog = new OpenFileDialog
+                {
+                    Title = "打开Shapefile文件",
+                    Filter = "Shape Files(*.shp)|*.shp",
+                    CheckFileExists = true,
+                    RestoreDirectory = true
+                };
                 if (pOpenFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string sFilePath = pOpenFileDialog.FileName;
@@ -266,12 +279,15 @@ namespace HMap
         #endregion 加载Shapefile
 
         #region 加载栅格数据
+
         public static void add_raster()
         {
-            OpenFileDialog pOpenFileDialog = new OpenFileDialog();
-            pOpenFileDialog.CheckFileExists = true;
-            pOpenFileDialog.Title = "打开Raster文件";
-            pOpenFileDialog.Filter = "栅格文件 (*.*)|*.bmp;*.tif;*.jpg;*.img|(*.bmp)|*.bmp|(*.tif)|*.tif|(*.jpg)|*.jpg|(*.img)|*.img";
+            OpenFileDialog pOpenFileDialog = new OpenFileDialog
+            {
+                CheckFileExists = true,
+                Title = "打开Raster文件",
+                Filter = "栅格文件 (*.*)|*.bmp;*.tif;*.jpg;*.img|(*.bmp)|*.bmp|(*.tif)|*.tif|(*.jpg)|*.jpg|(*.img)|*.img"
+            };
             pOpenFileDialog.ShowDialog();
 
             string pRasterFileName = pOpenFileDialog.FileName;
@@ -305,7 +321,8 @@ namespace HMap
             ILayer pLayer = pRasterLayer as ILayer;
             mainForm.mainform.mainMapControl.AddLayer(pLayer, 0);
         }
-        #endregion
+
+        #endregion 加载栅格数据
 
         #region 删除顶层图层
 
@@ -358,7 +375,7 @@ namespace HMap
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show("移动图层失败！"+ ex.Message, "信息提示", MessageBoxButtons.OK );
+                MessageBox.Show("移动图层失败！" + ex.Message, "信息提示", MessageBoxButtons.OK);
                 return;
             }
         }
@@ -371,9 +388,11 @@ namespace HMap
         {
             try
             {
-                mainForm.m_CustomizeDialog = new CustomizeDialog();
-                mainForm.m_CustomizeDialog.DialogTitle = "自定义ToolbarControl项目";
-                mainForm.m_CustomizeDialog.ShowAddFromFile = true;
+                mainForm.m_CustomizeDialog = new CustomizeDialog
+                {
+                    DialogTitle = "自定义ToolbarControl项目",
+                    ShowAddFromFile = true
+                };
                 mainForm.m_CustomizeDialog.SetDoubleClickDestination(mainForm.mainform.axToolbarControl1);
                 ICustomizeDialogEvents_OnStartDialogEventHandler startDialogE = new ICustomizeDialogEvents_OnStartDialogEventHandler(OnStartDialog);
                 ((ICustomizeDialogEvents_Event)mainForm.m_CustomizeDialog).OnStartDialog += startDialogE;
@@ -402,31 +421,36 @@ namespace HMap
         #endregion 生成自定义控件窗口
 
         #region 放大、缩小、全局视图
+
         public static void zoom_in()
         {
             ICommand pZoomIn = new ControlsMapZoomInToolClass();
             pZoomIn.OnCreate(mainForm.mainform.mainMapControl.Object);
             mainForm.mainform.mainMapControl.CurrentTool = pZoomIn as ITool;
         }
+
         public static void zoom_out()
         {
             ICommand pZoomOut = new ControlsMapZoomOutToolClass();
             pZoomOut.OnCreate(mainForm.mainform.mainMapControl.Object);
             mainForm.mainform.mainMapControl.CurrentTool = pZoomOut as ITool;
         }
+
         public static void full_view()
         {
             ICommand pFullExtent = new ControlsMapFullExtentCommandClass();
             pFullExtent.OnCreate(mainForm.mainform.mainMapControl.Object);
             pFullExtent.OnClick();
         }
-        #endregion
+
+        #endregion 放大、缩小、全局视图
 
         #region 鹰眼
+
         public static void SynchronizeEagleEye()
         {//鹰眼同步
             if (mainForm.mainform.EagleEyeMapControl.LayerCount > 0)
-            {//清理图层 
+            {//清理图层
                 mainForm.mainform.EagleEyeMapControl.ClearLayers();
             }
 
@@ -441,8 +465,7 @@ namespace HMap
                     for (int j = pCompositeLayer.Count - 1; j >= 0; j--)
                     {
                         ILayer pSubLayer = pCompositeLayer.get_Layer(j);
-                        IFeatureLayer pFeatureLayer = pSubLayer as IFeatureLayer;
-                        if (pFeatureLayer != null)
+                        if (pSubLayer is IFeatureLayer pFeatureLayer)
                         {
                             //由于鹰眼地图较小，所以过滤点图层不添加
                             if (pFeatureLayer.FeatureClass.ShapeType != esriGeometryType.esriGeometryPoint
@@ -455,8 +478,7 @@ namespace HMap
                 }
                 else
                 {
-                    IFeatureLayer pFeatureLayer = pLayer as IFeatureLayer;
-                    if (pFeatureLayer != null)
+                    if (pLayer is IFeatureLayer pFeatureLayer)
                     {
                         if (pFeatureLayer.FeatureClass.ShapeType != esriGeometryType.esriGeometryPoint
                             && pFeatureLayer.FeatureClass.ShapeType != esriGeometryType.esriGeometryMultipoint)
@@ -465,11 +487,11 @@ namespace HMap
                         }
                     }
                 }
-                //设置鹰眼地图全图显示  
+                //设置鹰眼地图全图显示
                 mainForm.mainform.EagleEyeMapControl.Extent = mainForm.mainform.mainMapControl.FullExtent;
                 pEnv = mainForm.mainform.mainMapControl.Extent as IEnvelope;
                 DrawRectangle(pEnv);
-               mainForm.mainform.EagleEyeMapControl.ActiveView.Refresh();
+                mainForm.mainform.EagleEyeMapControl.ActiveView.Refresh();
             }
         }
 
@@ -487,13 +509,17 @@ namespace HMap
             IRgbColor pColor = new RgbColorClass();
             pColor = GetRgbColor(255, 0, 0);
             pColor.Transparency = 255;
-            ILineSymbol pOutLine = new SimpleLineSymbolClass();
-            pOutLine.Width = 2;
-            pOutLine.Color = pColor;
+            ILineSymbol pOutLine = new SimpleLineSymbolClass
+            {
+                Width = 2,
+                Color = pColor
+            };
 
             IFillSymbol pFillSymbol = new SimpleFillSymbolClass();
-            pColor = new RgbColorClass();
-            pColor.Transparency = 0;
+            pColor = new RgbColorClass
+            {
+                Transparency = 0
+            };
             pFillSymbol.Color = pColor;
             pFillSymbol.Outline = pOutLine;
             //向鹰眼中添加矩形框
@@ -511,10 +537,12 @@ namespace HMap
             {
                 return pRgbColor;
             }
-            pRgbColor = new RgbColorClass();
-            pRgbColor.Red = intR;
-            pRgbColor.Green = intG;
-            pRgbColor.Blue = intB;
+            pRgbColor = new RgbColorClass
+            {
+                Red = intR,
+                Green = intG,
+                Blue = intB
+            };
             return pRgbColor;
         }
 
@@ -556,7 +584,6 @@ namespace HMap
 
         public static void move_rect(IMapControlEvents2_OnMouseMoveEvent e)
         {//移动鹰眼矩形框
-
             if (e.mapX > pEnv.XMin && e.mapY > pEnv.YMin && e.mapX < pEnv.XMax && e.mapY < pEnv.YMax)
             {
                 //如果鼠标移动到矩形框中，鼠标换成小手，表示可以拖动
@@ -595,9 +622,11 @@ namespace HMap
                 bCanDrag = false;
             }
         }
-        #endregion
+
+        #endregion 鹰眼
 
         #region 拉框选择
+
         public static void box_select(IMapControlEvents2_OnMouseDownEvent e)
         {
             mainForm.mainform.mainMapControl.CurrentTool = null;
@@ -608,16 +637,20 @@ namespace HMap
             pMap.SelectByShape(pEnv, null, false);
             pActiveView.PartialRefresh(esriViewDrawPhase.esriViewGeoSelection, null, null);
         }
-        #endregion
+
+        #endregion 拉框选择
 
         #region 打开个人地理数据库
+
         public static void load_personal_database()
         {//代开个人地理数据库
             IWorkspaceFactory pAccessWorkspaceFactory;
 
-            OpenFileDialog pOpenFileDialog = new OpenFileDialog();
-            pOpenFileDialog.Filter = "Personal Geodatabase(*.mdb)|*.mdb";
-            pOpenFileDialog.Title = "打开PersonGeodatabase文件";
+            OpenFileDialog pOpenFileDialog = new OpenFileDialog
+            {
+                Filter = "Personal Geodatabase(*.mdb)|*.mdb",
+                Title = "打开PersonGeodatabase文件"
+            };
             pOpenFileDialog.ShowDialog();
 
             string pFullPath = pOpenFileDialog.FileName;
@@ -626,13 +659,14 @@ namespace HMap
                 return;
             }
             pAccessWorkspaceFactory = new AccessWorkspaceFactory();
-           
+
             //获取工作空间
             IWorkspace pWorkspace = pAccessWorkspaceFactory.OpenFromFile(pFullPath, 0);
 
             //加载工作空间里的数据
             AddAllDataset(pWorkspace, mainForm.mainform.mainMapControl);
         }
+
         private static void AddAllDataset(IWorkspace pWorkspace, AxMapControl mapControl)
         {//遍历加载所有数据
             IEnumDataset pEnumDataset = pWorkspace.get_Datasets(ESRI.ArcGIS.Geodatabase.esriDatasetType.esriDTAny);
@@ -648,15 +682,19 @@ namespace HMap
                     IFeatureDataset pFeatureDataset = pFeatureWorkspace.OpenFeatureDataset(pDataset.Name);
                     IEnumDataset pEnumDataset1 = pFeatureDataset.Subsets;
                     pEnumDataset1.Reset();
-                    IGroupLayer pGroupLayer = new GroupLayerClass();
-                    pGroupLayer.Name = pFeatureDataset.Name;
+                    IGroupLayer pGroupLayer = new GroupLayerClass
+                    {
+                        Name = pFeatureDataset.Name
+                    };
                     IDataset pDataset1 = pEnumDataset1.Next();
                     while (pDataset1 != null)
                     {
                         if (pDataset1 is IFeatureClass)  //要素类
                         {
-                            IFeatureLayer pFeatureLayer = new FeatureLayerClass();
-                            pFeatureLayer.FeatureClass = pFeatureWorkspace.OpenFeatureClass(pDataset1.Name);
+                            IFeatureLayer pFeatureLayer = new FeatureLayerClass
+                            {
+                                FeatureClass = pFeatureWorkspace.OpenFeatureClass(pDataset1.Name)
+                            };
                             if (pFeatureLayer.FeatureClass != null)
                             {
                                 pFeatureLayer.Name = pFeatureLayer.FeatureClass.AliasName;
@@ -670,8 +708,10 @@ namespace HMap
                 else if (pDataset is IFeatureClass) //要素类
                 {
                     IFeatureWorkspace pFeatureWorkspace = (IFeatureWorkspace)pWorkspace;
-                    IFeatureLayer pFeatureLayer = new FeatureLayerClass();
-                    pFeatureLayer.FeatureClass = pFeatureWorkspace.OpenFeatureClass(pDataset.Name);
+                    IFeatureLayer pFeatureLayer = new FeatureLayerClass
+                    {
+                        FeatureClass = pFeatureWorkspace.OpenFeatureClass(pDataset.Name)
+                    };
 
                     pFeatureLayer.Name = pFeatureLayer.FeatureClass.AliasName;
                     mapControl.Map.AddLayer(pFeatureLayer);
@@ -702,15 +742,18 @@ namespace HMap
             //同步鹰眼
             SynchronizeEagleEye();
         }
-        #endregion
+
+        #endregion 打开个人地理数据库
 
         #region 清除选择
+
         public static void clear_selection()
         {
             IActiveView pActiveView = mainForm.mainform.mainMapControl.ActiveView;
             pActiveView.FocusMap.ClearSelection();
             pActiveView.PartialRefresh(esriViewDrawPhase.esriViewGeoSelection, null, pActiveView.Extent);
         }
-        #endregion
+
+        #endregion 清除选择
     }
 }
