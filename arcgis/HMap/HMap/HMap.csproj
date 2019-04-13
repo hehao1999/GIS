@@ -97,6 +97,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="baseOrder.cs" />
+    <Compile Include="bookMark.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="bookMark.Designer.cs">
+      <DependentUpon>bookMark.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManageBookMarks .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManageBookMarks .Designer.cs">
+      <DependentUpon>FormManageBookMarks .cs</DependentUpon>
+    </Compile>
     <Compile Include="layerManage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +123,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="bookMark.resx">
+      <DependentUpon>bookMark.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManageBookMarks .resx">
+      <DependentUpon>FormManageBookMarks .cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="layerManage.resx">
       <DependentUpon>layerManage.cs</DependentUpon>
     </EmbeddedResource>
@@ -338,24 +356,6 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
     <COMReference Include="stdole1">
-      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="stdole2">
-      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="stdole3">
       <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>2</VersionMajor>
       <VersionMinor>0</VersionMinor>

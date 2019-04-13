@@ -1,8 +1,7 @@
-﻿using ESRI.ArcGIS.Carto;
-using ESRI.ArcGIS.Controls;
-using ESRI.ArcGIS.Geometry;
-using ESRI.ArcGIS.SystemUI;
+﻿using ESRI.ArcGIS.Controls;
+using MapOperation;
 using System;
+using System.Windows.Forms;
 
 namespace HMap
 {
@@ -88,7 +87,6 @@ namespace HMap
         //customizes按钮按下
         private void customizesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            m_CustomizeDialog.StartDialog(axToolbarControl1.hWnd);
         }
 
         //开始鹰眼操作
@@ -121,27 +119,6 @@ namespace HMap
             baseOrder.end_move(e);
         }
 
-        //放大按钮按下
-        private void zoomToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            flag = 0;
-            baseOrder.zoom_in();
-        }
-
-        //缩小按钮按下
-        private void zoomOutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            flag = 0;
-            baseOrder.zoom_out();
-        }
-
-        //全图按钮按下
-        private void fullExtentToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            flag = 0;
-            baseOrder.full_view();
-        }
-
         //拉框选择按钮按下
         private void boxSelectToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -151,7 +128,7 @@ namespace HMap
         //拉框选择
         private void mainMapControl_OnMouseDown(object sender, IMapControlEvents2_OnMouseDownEvent e)
         {
-            if(flag == 1)
+            if (flag == 1)
                 baseOrder.box_select(e);
         }
 
@@ -173,11 +150,97 @@ namespace HMap
             baseOrder.add_raster();
         }
 
+        //图层管理窗口
         private void layManageWindowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            layerManageForm f = new layerManageForm();
-            f.Owner = this;
+            layerManageForm f = new layerManageForm
+            {
+                Owner = this
+            };
             f.Show();
+        }
+
+        //打开mxd
+        private void ToolStripButton1_Click(object sender, EventArgs e)
+        {
+            baseOrder.open_doc();
+        }
+
+        //添加数据
+        private void ToolStripButton2_Click(object sender, EventArgs e)
+        {
+            baseOrder.add_data();
+        }
+
+        //保存
+        private void ToolStripButton3_Click(object sender, EventArgs e)
+        {
+            baseOrder.save_doc();
+        }
+
+        //放大
+        private void ToolStripButton4_Click(object sender, EventArgs e)
+        {
+            baseOrder.zoom_in();
+        }
+
+        //缩小
+        private void ToolStripButton5_Click(object sender, EventArgs e)
+        {
+            baseOrder.zoom_out();
+        }
+
+        //漫游
+        private void ToolStripButton6_Click(object sender, EventArgs e)
+        {
+            baseOrder.pan();
+        }
+
+        //全图
+        private void ToolStripButton7_Click(object sender, EventArgs e)
+        {
+            baseOrder.full_view();
+        }
+
+        //自定义
+        private void ToolStripLabel3_Click(object sender, EventArgs e)
+        {
+            m_CustomizeDialog.StartDialog(axToolbarControl1.hWnd);
+        }
+
+        //管理书签
+        private void ManageBookMarkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FormManageBookMarks frmManageBookMark = new FormManageBookMarks(mainMapControl.Map);
+                frmManageBookMark.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            //try
+            //{
+            //    FormManageBookMarks frmManageBookMark = new FormManageBookMarks(mainMapControl.Map);
+            //    frmManageBookMark.ShowDialog();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+        }
+
+        //添加书签
+        private void ScalesToSelectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            baseOrder.zoom_to_selection();
+        }
+
+        private void AddBookMarkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bookMark bookmark = new bookMark();
+            bookmark.Show();
         }
     }
 }

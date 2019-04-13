@@ -10,7 +10,7 @@ namespace HMap
         {
             InitializeComponent();
         }
-        
+
         private void layerManageForm_Load(object sender, EventArgs e)
         {
             //读入图层名

@@ -40,6 +40,18 @@ namespace HMap
 
         #endregion 退出程序
 
+        #region 添加数据
+
+        public static void add_data()
+        {
+            mainForm.mainform.mainMapControl.CurrentTool = null;
+            ICommand pCommand = new ESRI.ArcGIS.Controls.ControlsAddDataCommandClass();
+            pCommand.OnCreate(mainForm.mainform.mainMapControl.Object);
+            pCommand.OnClick();
+        }
+
+        #endregion 添加数据
+
         #region 新建地图文档
 
         public static void new_doc()
@@ -89,37 +101,41 @@ namespace HMap
 
         public static void open_doc()
         {
-            try
-            {
-                //实例化OpenFileDialog控件
-                OpenFileDialog pOpenFileDialog = new OpenFileDialog
-                {
-                    CheckFileExists = true,
-                    RestoreDirectory = true,
-                    Title = "打开地图文档",
-                    Filter = "ArcMap文档(*.mxd)|*.mxd"
-                };
+            mainForm.mainform.mainMapControl.CurrentTool = null;
+            ICommand pCommand = new ESRI.ArcGIS.Controls.ControlsOpenDocCommandClass();
+            pCommand.OnCreate(mainForm.mainform.mainMapControl.Object);
+            pCommand.OnClick();
+            /* try
+             {
+                 //实例化OpenFileDialog控件
+                 OpenFileDialog pOpenFileDialog = new OpenFileDialog
+                 {
+                     CheckFileExists = true,
+                     RestoreDirectory = true,
+                     Title = "打开地图文档",
+                     Filter = "ArcMap文档(*.mxd)|*.mxd"
+                 };
 
-                if (pOpenFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string filename = pOpenFileDialog.FileName;
-                    if (mainForm.mainform.mainMapControl.CheckMxFile(filename))
-                    {//有效地图文档，加载地图
-                        mainForm.mainform.mainMapControl.LoadMxFile(filename);
-                        return;
-                    }
-                    else
-                    {//地图文档无效
-                        MessageBox.Show(filename + "无效的地图文档!", "信息提示", MessageBoxButtons.OK);
-                        return;
-                    }
-                }
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show("打开地图文档失败" + exc.Message, "信息提示", MessageBoxButtons.OK);
-                return;
-            }
+                 if (pOpenFileDialog.ShowDialog() == DialogResult.OK)
+                 {
+                     string filename = pOpenFileDialog.FileName;
+                     if (mainForm.mainform.mainMapControl.CheckMxFile(filename))
+                     {//有效地图文档，加载地图
+                         mainForm.mainform.mainMapControl.LoadMxFile(filename);
+                         return;
+                     }
+                     else
+                     {//地图文档无效
+                         MessageBox.Show(filename + "无效的地图文档!", "信息提示", MessageBoxButtons.OK);
+                         return;
+                     }
+                 }
+             }
+             catch (Exception exc)
+             {
+                 MessageBox.Show("打开地图文档失败" + exc.Message, "信息提示", MessageBoxButtons.OK);
+                 return;
+             }*/
         }
 
         #endregion 打开地图文档
@@ -182,37 +198,41 @@ namespace HMap
 
         public static void saveas_doc()
         {
-            try
-            {
-                //实例化SaveFileDialog
-                SaveFileDialog pSaveFileDialog = new SaveFileDialog
-                {
-                    Filter = "地图文档文件（*.mxd）|*.mxd",
-                    Title = "选择保存路径",
-                    OverwritePrompt = true,
-                    RestoreDirectory = true
-                };
+            mainForm.mainform.mainMapControl.CurrentTool = null;
+            ICommand pCommand = new ESRI.ArcGIS.Controls.ControlsSaveAsDocCommandClass();
+            pCommand.OnCreate(mainForm.mainform.mainMapControl.Object);
+            pCommand.OnClick();
+            //try
+            //{
+            //    //实例化SaveFileDialog
+            //    SaveFileDialog pSaveFileDialog = new SaveFileDialog
+            //    {
+            //        Filter = "地图文档文件（*.mxd）|*.mxd",
+            //        Title = "选择保存路径",
+            //        OverwritePrompt = true,
+            //        RestoreDirectory = true
+            //    };
 
-                if (pSaveFileDialog.ShowDialog() == DialogResult.OK)
-                {//保存地图文档
-                    string filename = pSaveFileDialog.FileName;
-                    IMapDocument pMapDocument = new MapDocumentClass();
-                    pMapDocument.New(filename);
-                    pMapDocument.ReplaceContents(mainForm.mainform.mainMapControl.Map as IMxdContents);
-                    pMapDocument.Save(pMapDocument.UsesRelativePaths, true);
-                    pMapDocument.Close();
-                    MessageBox.Show("地图文档另存为成功!", "信息提示", MessageBoxButtons.OK);
-                    return;
-                }
-                else
-                {
-                    return;
-                }
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show("地图文档另存为失败！" + exc.Message, "信息提示", MessageBoxButtons.OK);
-            }
+            //    if (pSaveFileDialog.ShowDialog() == DialogResult.OK)
+            //    {//保存地图文档
+            //        string filename = pSaveFileDialog.FileName;
+            //        IMapDocument pMapDocument = new MapDocumentClass();
+            //        pMapDocument.New(filename);
+            //        pMapDocument.ReplaceContents(mainForm.mainform.mainMapControl.Map as IMxdContents);
+            //        pMapDocument.Save(pMapDocument.UsesRelativePaths, true);
+            //        pMapDocument.Close();
+            //        MessageBox.Show("地图文档另存为成功!", "信息提示", MessageBoxButtons.OK);
+            //        return;
+            //    }
+            //    else
+            //    {
+            //        return;
+            //    }
+            //}
+            //catch (Exception exc)
+            //{
+            //    MessageBox.Show("地图文档另存为失败！" + exc.Message, "信息提示", MessageBoxButtons.OK);
+            //}
         }
 
         #endregion 另存为地图文档
@@ -420,10 +440,11 @@ namespace HMap
 
         #endregion 生成自定义控件窗口
 
-        #region 放大、缩小、全局视图
+        #region 放大、缩小、全局视图、漫游
 
         public static void zoom_in()
         {
+            mainForm.mainform.mainMapControl.CurrentTool = null;
             ICommand pZoomIn = new ControlsMapZoomInToolClass();
             pZoomIn.OnCreate(mainForm.mainform.mainMapControl.Object);
             mainForm.mainform.mainMapControl.CurrentTool = pZoomIn as ITool;
@@ -431,6 +452,7 @@ namespace HMap
 
         public static void zoom_out()
         {
+            mainForm.mainform.mainMapControl.CurrentTool = null;
             ICommand pZoomOut = new ControlsMapZoomOutToolClass();
             pZoomOut.OnCreate(mainForm.mainform.mainMapControl.Object);
             mainForm.mainform.mainMapControl.CurrentTool = pZoomOut as ITool;
@@ -438,12 +460,162 @@ namespace HMap
 
         public static void full_view()
         {
+            mainForm.mainform.mainMapControl.CurrentTool = null;
             ICommand pFullExtent = new ControlsMapFullExtentCommandClass();
             pFullExtent.OnCreate(mainForm.mainform.mainMapControl.Object);
-            pFullExtent.OnClick();
         }
 
-        #endregion 放大、缩小、全局视图
+        public static void pan()
+        {
+            mainForm.mainform.mainMapControl.CurrentTool = null;
+            ICommand command = new ESRI.ArcGIS.Controls.ControlsMapPanToolClass();
+            command.OnCreate(mainForm.mainform.mainMapControl.Object);
+            mainForm.mainform.mainMapControl.CurrentTool = command as ITool;
+        }
+
+        #endregion 放大、缩小、全局视图、漫游
+
+        #region 拉框选择
+
+        public static void box_select(IMapControlEvents2_OnMouseDownEvent e)
+        {
+            mainForm.mainform.mainMapControl.CurrentTool = null;
+            IMap pMap = mainForm.mainform.mainMapControl.Map;
+            IActiveView pActiveView = pMap as IActiveView;
+            IEnvelope pEnv = new EnvelopeClass();
+            pEnv = mainForm.mainform.mainMapControl.TrackRectangle();
+            pMap.SelectByShape(pEnv, null, false);
+            pActiveView.PartialRefresh(esriViewDrawPhase.esriViewGeoSelection, null, null);
+        }
+
+        #endregion 拉框选择
+
+        #region 打开个人地理数据库
+
+        public static void load_personal_database()
+        {//代开个人地理数据库
+            IWorkspaceFactory pAccessWorkspaceFactory;
+
+            OpenFileDialog pOpenFileDialog = new OpenFileDialog
+            {
+                Filter = "Personal Geodatabase(*.mdb)|*.mdb",
+                Title = "打开PersonGeodatabase文件"
+            };
+            pOpenFileDialog.ShowDialog();
+
+            string pFullPath = pOpenFileDialog.FileName;
+            if (pFullPath == "")
+            {
+                return;
+            }
+            pAccessWorkspaceFactory = new AccessWorkspaceFactory();
+
+            //获取工作空间
+            IWorkspace pWorkspace = pAccessWorkspaceFactory.OpenFromFile(pFullPath, 0);
+
+            //加载工作空间里的数据
+            AddAllDataset(pWorkspace, mainForm.mainform.mainMapControl);
+        }
+
+        private static void AddAllDataset(IWorkspace pWorkspace, AxMapControl mapControl)
+        {//遍历加载所有数据
+            IEnumDataset pEnumDataset = pWorkspace.get_Datasets(ESRI.ArcGIS.Geodatabase.esriDatasetType.esriDTAny);
+            pEnumDataset.Reset();
+            //将Enum数据集中的数据一个个读到DataSet中
+            IDataset pDataset = pEnumDataset.Next();
+            //判断数据集是否有数据
+            while (pDataset != null)
+            {
+                if (pDataset is IFeatureDataset)  //要素数据集
+                {
+                    IFeatureWorkspace pFeatureWorkspace = (IFeatureWorkspace)pWorkspace;
+                    IFeatureDataset pFeatureDataset = pFeatureWorkspace.OpenFeatureDataset(pDataset.Name);
+                    IEnumDataset pEnumDataset1 = pFeatureDataset.Subsets;
+                    pEnumDataset1.Reset();
+                    IGroupLayer pGroupLayer = new GroupLayerClass
+                    {
+                        Name = pFeatureDataset.Name
+                    };
+                    IDataset pDataset1 = pEnumDataset1.Next();
+                    while (pDataset1 != null)
+                    {
+                        if (pDataset1 is IFeatureClass)  //要素类
+                        {
+                            IFeatureLayer pFeatureLayer = new FeatureLayerClass
+                            {
+                                FeatureClass = pFeatureWorkspace.OpenFeatureClass(pDataset1.Name)
+                            };
+                            if (pFeatureLayer.FeatureClass != null)
+                            {
+                                pFeatureLayer.Name = pFeatureLayer.FeatureClass.AliasName;
+                                pGroupLayer.Add(pFeatureLayer);
+                                mapControl.Map.AddLayer(pFeatureLayer);
+                            }
+                        }
+                        pDataset1 = pEnumDataset1.Next();
+                    }
+                }
+                else if (pDataset is IFeatureClass) //要素类
+                {
+                    IFeatureWorkspace pFeatureWorkspace = (IFeatureWorkspace)pWorkspace;
+                    IFeatureLayer pFeatureLayer = new FeatureLayerClass
+                    {
+                        FeatureClass = pFeatureWorkspace.OpenFeatureClass(pDataset.Name)
+                    };
+
+                    pFeatureLayer.Name = pFeatureLayer.FeatureClass.AliasName;
+                    mapControl.Map.AddLayer(pFeatureLayer);
+                }
+                else if (pDataset is IRasterDataset) //栅格数据集
+                {
+                    IRasterWorkspaceEx pRasterWorkspace = (IRasterWorkspaceEx)pWorkspace;
+                    IRasterDataset pRasterDataset = pRasterWorkspace.OpenRasterDataset(pDataset.Name);
+                    //影像金字塔判断与创建
+                    IRasterPyramid3 pRasPyrmid;
+                    pRasPyrmid = pRasterDataset as IRasterPyramid3;
+                    if (pRasPyrmid != null)
+                    {
+                        if (!(pRasPyrmid.Present))
+                        {
+                            pRasPyrmid.Create(); //创建金字塔
+                        }
+                    }
+                    IRasterLayer pRasterLayer = new RasterLayerClass();
+                    pRasterLayer.CreateFromDataset(pRasterDataset);
+                    ILayer pLayer = pRasterLayer as ILayer;
+                    mapControl.AddLayer(pLayer, 0);
+                }
+                pDataset = pEnumDataset.Next();
+            }
+
+            mapControl.ActiveView.Refresh();
+            //同步鹰眼
+            SynchronizeEagleEye();
+        }
+
+        #endregion 打开个人地理数据库
+
+        #region 清除选择
+
+        public static void clear_selection()
+        {
+            IActiveView pActiveView = mainForm.mainform.mainMapControl.ActiveView;
+            pActiveView.FocusMap.ClearSelection();
+            pActiveView.PartialRefresh(esriViewDrawPhase.esriViewGeoSelection, null, pActiveView.Extent);
+        }
+
+        #endregion 清除选择
+
+        #region 缩放至所选
+
+        public static void zoom_to_selection()
+        {
+            ICommand pcommand = new ESRI.ArcGIS.Controls.ControlsZoomToSelectedCommandClass();
+            pcommand.OnCreate(mainForm.mainform.mainMapControl.Object);
+            pcommand.OnClick();
+        }
+
+        #endregion 缩放至所选
 
         #region 鹰眼
 
@@ -625,135 +797,12 @@ namespace HMap
 
         #endregion 鹰眼
 
-        #region 拉框选择
+        #region 添加书签
 
-        public static void box_select(IMapControlEvents2_OnMouseDownEvent e)
-        {
-            mainForm.mainform.mainMapControl.CurrentTool = null;
-            IMap pMap = mainForm.mainform.mainMapControl.Map;
-            IActiveView pActiveView = pMap as IActiveView;
-            IEnvelope pEnv = new EnvelopeClass();
-            pEnv = mainForm.mainform.mainMapControl.TrackRectangle();
-            pMap.SelectByShape(pEnv, null, false);
-            pActiveView.PartialRefresh(esriViewDrawPhase.esriViewGeoSelection, null, null);
-        }
+        //public static void add_bookmark()
+        //{
+        //}
 
-        #endregion 拉框选择
-
-        #region 打开个人地理数据库
-
-        public static void load_personal_database()
-        {//代开个人地理数据库
-            IWorkspaceFactory pAccessWorkspaceFactory;
-
-            OpenFileDialog pOpenFileDialog = new OpenFileDialog
-            {
-                Filter = "Personal Geodatabase(*.mdb)|*.mdb",
-                Title = "打开PersonGeodatabase文件"
-            };
-            pOpenFileDialog.ShowDialog();
-
-            string pFullPath = pOpenFileDialog.FileName;
-            if (pFullPath == "")
-            {
-                return;
-            }
-            pAccessWorkspaceFactory = new AccessWorkspaceFactory();
-
-            //获取工作空间
-            IWorkspace pWorkspace = pAccessWorkspaceFactory.OpenFromFile(pFullPath, 0);
-
-            //加载工作空间里的数据
-            AddAllDataset(pWorkspace, mainForm.mainform.mainMapControl);
-        }
-
-        private static void AddAllDataset(IWorkspace pWorkspace, AxMapControl mapControl)
-        {//遍历加载所有数据
-            IEnumDataset pEnumDataset = pWorkspace.get_Datasets(ESRI.ArcGIS.Geodatabase.esriDatasetType.esriDTAny);
-            pEnumDataset.Reset();
-            //将Enum数据集中的数据一个个读到DataSet中
-            IDataset pDataset = pEnumDataset.Next();
-            //判断数据集是否有数据
-            while (pDataset != null)
-            {
-                if (pDataset is IFeatureDataset)  //要素数据集
-                {
-                    IFeatureWorkspace pFeatureWorkspace = (IFeatureWorkspace)pWorkspace;
-                    IFeatureDataset pFeatureDataset = pFeatureWorkspace.OpenFeatureDataset(pDataset.Name);
-                    IEnumDataset pEnumDataset1 = pFeatureDataset.Subsets;
-                    pEnumDataset1.Reset();
-                    IGroupLayer pGroupLayer = new GroupLayerClass
-                    {
-                        Name = pFeatureDataset.Name
-                    };
-                    IDataset pDataset1 = pEnumDataset1.Next();
-                    while (pDataset1 != null)
-                    {
-                        if (pDataset1 is IFeatureClass)  //要素类
-                        {
-                            IFeatureLayer pFeatureLayer = new FeatureLayerClass
-                            {
-                                FeatureClass = pFeatureWorkspace.OpenFeatureClass(pDataset1.Name)
-                            };
-                            if (pFeatureLayer.FeatureClass != null)
-                            {
-                                pFeatureLayer.Name = pFeatureLayer.FeatureClass.AliasName;
-                                pGroupLayer.Add(pFeatureLayer);
-                                mapControl.Map.AddLayer(pFeatureLayer);
-                            }
-                        }
-                        pDataset1 = pEnumDataset1.Next();
-                    }
-                }
-                else if (pDataset is IFeatureClass) //要素类
-                {
-                    IFeatureWorkspace pFeatureWorkspace = (IFeatureWorkspace)pWorkspace;
-                    IFeatureLayer pFeatureLayer = new FeatureLayerClass
-                    {
-                        FeatureClass = pFeatureWorkspace.OpenFeatureClass(pDataset.Name)
-                    };
-
-                    pFeatureLayer.Name = pFeatureLayer.FeatureClass.AliasName;
-                    mapControl.Map.AddLayer(pFeatureLayer);
-                }
-                else if (pDataset is IRasterDataset) //栅格数据集
-                {
-                    IRasterWorkspaceEx pRasterWorkspace = (IRasterWorkspaceEx)pWorkspace;
-                    IRasterDataset pRasterDataset = pRasterWorkspace.OpenRasterDataset(pDataset.Name);
-                    //影像金字塔判断与创建
-                    IRasterPyramid3 pRasPyrmid;
-                    pRasPyrmid = pRasterDataset as IRasterPyramid3;
-                    if (pRasPyrmid != null)
-                    {
-                        if (!(pRasPyrmid.Present))
-                        {
-                            pRasPyrmid.Create(); //创建金字塔
-                        }
-                    }
-                    IRasterLayer pRasterLayer = new RasterLayerClass();
-                    pRasterLayer.CreateFromDataset(pRasterDataset);
-                    ILayer pLayer = pRasterLayer as ILayer;
-                    mapControl.AddLayer(pLayer, 0);
-                }
-                pDataset = pEnumDataset.Next();
-            }
-
-            mapControl.ActiveView.Refresh();
-            //同步鹰眼
-            SynchronizeEagleEye();
-        }
-
-        #endregion 打开个人地理数据库
-
-        #region 清除选择
-
-        public static void clear_selection()
-        {
-            IActiveView pActiveView = mainForm.mainform.mainMapControl.ActiveView;
-            pActiveView.FocusMap.ClearSelection();
-            pActiveView.PartialRefresh(esriViewDrawPhase.esriViewGeoSelection, null, pActiveView.Extent);
-        }
-
-        #endregion 清除选择
+        #endregion 添加书签
     }
 }

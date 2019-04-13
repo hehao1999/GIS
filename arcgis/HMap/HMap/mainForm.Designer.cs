@@ -33,7 +33,6 @@
             this.mainMapControl = new ESRI.ArcGIS.Controls.AxMapControl();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.axLicenseControl1 = new ESRI.ArcGIS.Controls.AxLicenseControl();
-            this.axToolbarControl1 = new ESRI.ArcGIS.Controls.AxToolbarControl();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.file_menu = new System.Windows.Forms.ToolStripMenuItem();
             this.file_new = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,25 +47,40 @@
             this.deleteLayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearAllLayersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveLayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.customizesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.layManageWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zoomOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fullExtentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.boxSelectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addRasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scalesToSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bookMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addBookMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageBookMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EagleEyeMapControl = new ESRI.ArcGIS.Controls.AxMapControl();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.axTOCControl1 = new ESRI.ArcGIS.Controls.AxTOCControl();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.axToolbarControl1 = new ESRI.ArcGIS.Controls.AxToolbarControl();
+            this.label1 = new System.Windows.Forms.Label();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             ((System.ComponentModel.ISupportInitialize)(this.mainMapControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axToolbarControl1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EagleEyeMapControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axTOCControl1)).BeginInit();
+            this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axToolbarControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainMapControl
@@ -74,11 +88,11 @@
             this.mainMapControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainMapControl.Location = new System.Drawing.Point(298, 61);
+            this.mainMapControl.Location = new System.Drawing.Point(298, 59);
             this.mainMapControl.Margin = new System.Windows.Forms.Padding(2);
             this.mainMapControl.Name = "mainMapControl";
             this.mainMapControl.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mainMapControl.OcxState")));
-            this.mainMapControl.Size = new System.Drawing.Size(638, 619);
+            this.mainMapControl.Size = new System.Drawing.Size(638, 621);
             this.mainMapControl.TabIndex = 0;
             this.mainMapControl.OnMouseDown += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMouseDownEventHandler(this.mainMapControl_OnMouseDown);
             this.mainMapControl.OnExtentUpdated += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnExtentUpdatedEventHandler(this.mainMapControl_OnExtentUpdated);
@@ -89,7 +103,7 @@
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Location = new System.Drawing.Point(0, 681);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(936, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(904, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -97,23 +111,11 @@
             // 
             this.axLicenseControl1.Dock = System.Windows.Forms.DockStyle.Right;
             this.axLicenseControl1.Enabled = true;
-            this.axLicenseControl1.Location = new System.Drawing.Point(904, 31);
+            this.axLicenseControl1.Location = new System.Drawing.Point(904, 0);
             this.axLicenseControl1.Name = "axLicenseControl1";
             this.axLicenseControl1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axLicenseControl1.OcxState")));
             this.axLicenseControl1.Size = new System.Drawing.Size(32, 32);
             this.axLicenseControl1.TabIndex = 5;
-            // 
-            // axToolbarControl1
-            // 
-            this.axToolbarControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.axToolbarControl1.Location = new System.Drawing.Point(0, 31);
-            this.axToolbarControl1.Margin = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.axToolbarControl1.Name = "axToolbarControl1";
-            this.axToolbarControl1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axToolbarControl1.OcxState")));
-            this.axToolbarControl1.Size = new System.Drawing.Size(936, 28);
-            this.axToolbarControl1.TabIndex = 6;
             // 
             // menuStrip1
             // 
@@ -123,10 +125,11 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.file_menu,
             this.layManag_menu,
+            this.bookMarkToolStripMenuItem,
             this.customToolsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(936, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(904, 31);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -196,7 +199,6 @@
             this.deleteLayerToolStripMenuItem,
             this.clearAllLayersToolStripMenuItem,
             this.moveLayerToolStripMenuItem,
-            this.customizesToolStripMenuItem,
             this.layManageWindowToolStripMenuItem});
             this.layManag_menu.Name = "layManag_menu";
             this.layManag_menu.Size = new System.Drawing.Size(119, 27);
@@ -237,13 +239,6 @@
             this.moveLayerToolStripMenuItem.Text = "Move Last Layer";
             this.moveLayerToolStripMenuItem.Click += new System.EventHandler(this.moveLayerToolStripMenuItem_Click);
             // 
-            // customizesToolStripMenuItem
-            // 
-            this.customizesToolStripMenuItem.Name = "customizesToolStripMenuItem";
-            this.customizesToolStripMenuItem.Size = new System.Drawing.Size(246, 28);
-            this.customizesToolStripMenuItem.Text = "Customizes";
-            this.customizesToolStripMenuItem.Click += new System.EventHandler(this.customizesToolStripMenuItem_Click);
-            // 
             // layManageWindowToolStripMenuItem
             // 
             this.layManageWindowToolStripMenuItem.Name = "layManageWindowToolStripMenuItem";
@@ -254,37 +249,14 @@
             // customToolsToolStripMenuItem
             // 
             this.customToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.zoomToolStripMenuItem,
-            this.zoomOutToolStripMenuItem,
-            this.fullExtentToolStripMenuItem,
             this.boxSelectToolStripMenuItem,
+            this.scalesToSelectionToolStripMenuItem,
+            this.addRasterToolStripMenuItem,
             this.clearSelectionToolStripMenuItem,
-            this.openFileDatabaseToolStripMenuItem,
-            this.addRasterToolStripMenuItem});
+            this.openFileDatabaseToolStripMenuItem});
             this.customToolsToolStripMenuItem.Name = "customToolsToolStripMenuItem";
             this.customToolsToolStripMenuItem.Size = new System.Drawing.Size(119, 27);
             this.customToolsToolStripMenuItem.Text = "custom tools";
-            // 
-            // zoomToolStripMenuItem
-            // 
-            this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(274, 28);
-            this.zoomToolStripMenuItem.Text = "Zoom In";
-            this.zoomToolStripMenuItem.Click += new System.EventHandler(this.zoomToolStripMenuItem_Click);
-            // 
-            // zoomOutToolStripMenuItem
-            // 
-            this.zoomOutToolStripMenuItem.Name = "zoomOutToolStripMenuItem";
-            this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(274, 28);
-            this.zoomOutToolStripMenuItem.Text = "Zoom Out";
-            this.zoomOutToolStripMenuItem.Click += new System.EventHandler(this.zoomOutToolStripMenuItem_Click);
-            // 
-            // fullExtentToolStripMenuItem
-            // 
-            this.fullExtentToolStripMenuItem.Name = "fullExtentToolStripMenuItem";
-            this.fullExtentToolStripMenuItem.Size = new System.Drawing.Size(274, 28);
-            this.fullExtentToolStripMenuItem.Text = "Full Extent";
-            this.fullExtentToolStripMenuItem.Click += new System.EventHandler(this.fullExtentToolStripMenuItem_Click);
             // 
             // boxSelectToolStripMenuItem
             // 
@@ -314,6 +286,36 @@
             this.addRasterToolStripMenuItem.Text = "Add Raster";
             this.addRasterToolStripMenuItem.Click += new System.EventHandler(this.addRasterToolStripMenuItem_Click);
             // 
+            // scalesToSelectionToolStripMenuItem
+            // 
+            this.scalesToSelectionToolStripMenuItem.Name = "scalesToSelectionToolStripMenuItem";
+            this.scalesToSelectionToolStripMenuItem.Size = new System.Drawing.Size(274, 28);
+            this.scalesToSelectionToolStripMenuItem.Text = "Zoom To Selection";
+            this.scalesToSelectionToolStripMenuItem.Click += new System.EventHandler(this.ScalesToSelectionToolStripMenuItem_Click);
+            // 
+            // bookMarkToolStripMenuItem
+            // 
+            this.bookMarkToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addBookMarkToolStripMenuItem,
+            this.manageBookMarkToolStripMenuItem});
+            this.bookMarkToolStripMenuItem.Name = "bookMarkToolStripMenuItem";
+            this.bookMarkToolStripMenuItem.Size = new System.Drawing.Size(107, 27);
+            this.bookMarkToolStripMenuItem.Text = "Book Mark";
+            // 
+            // addBookMarkToolStripMenuItem
+            // 
+            this.addBookMarkToolStripMenuItem.Name = "addBookMarkToolStripMenuItem";
+            this.addBookMarkToolStripMenuItem.Size = new System.Drawing.Size(239, 28);
+            this.addBookMarkToolStripMenuItem.Text = "Add Book Mark";
+            this.addBookMarkToolStripMenuItem.Click += new System.EventHandler(this.AddBookMarkToolStripMenuItem_Click);
+            // 
+            // manageBookMarkToolStripMenuItem
+            // 
+            this.manageBookMarkToolStripMenuItem.Name = "manageBookMarkToolStripMenuItem";
+            this.manageBookMarkToolStripMenuItem.Size = new System.Drawing.Size(239, 28);
+            this.manageBookMarkToolStripMenuItem.Text = "Manage Book Mark";
+            this.manageBookMarkToolStripMenuItem.Click += new System.EventHandler(this.ManageBookMarkToolStripMenuItem_Click);
+            // 
             // EagleEyeMapControl
             // 
             this.EagleEyeMapControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -336,11 +338,141 @@
             // 
             // axTOCControl1
             // 
-            this.axTOCControl1.Location = new System.Drawing.Point(0, 61);
+            this.axTOCControl1.Location = new System.Drawing.Point(0, 59);
             this.axTOCControl1.Name = "axTOCControl1";
             this.axTOCControl1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axTOCControl1.OcxState")));
-            this.axTOCControl1.Size = new System.Drawing.Size(294, 390);
+            this.axTOCControl1.Size = new System.Drawing.Size(294, 392);
             this.axTOCControl1.TabIndex = 9;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.toolStripButton1,
+            this.toolStripButton2,
+            this.toolStripButton3,
+            this.toolStripSeparator2,
+            this.toolStripButton4,
+            this.toolStripButton5,
+            this.toolStripButton6,
+            this.toolStripButton7,
+            this.toolStripLabel2,
+            this.toolStripLabel3});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 31);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(904, 27);
+            this.toolStrip1.TabIndex = 10;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(0, 24);
+            this.toolStripLabel1.Text = "放大";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 24);
+            this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1_Click);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 24);
+            this.toolStripButton2.Click += new System.EventHandler(this.ToolStripButton2_Click);
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(23, 24);
+            this.toolStripButton3.Click += new System.EventHandler(this.ToolStripButton3_Click);
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(24, 24);
+            this.toolStripButton4.Click += new System.EventHandler(this.ToolStripButton4_Click);
+            // 
+            // axToolbarControl1
+            // 
+            this.axToolbarControl1.Location = new System.Drawing.Point(674, 31);
+            this.axToolbarControl1.Name = "axToolbarControl1";
+            this.axToolbarControl1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axToolbarControl1.OcxState")));
+            this.axToolbarControl1.Size = new System.Drawing.Size(262, 24);
+            this.axToolbarControl1.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(-4, 50);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(898, 23);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "                                                                                 " +
+    "                                                                   ";
+            // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(24, 24);
+            this.toolStripButton5.Click += new System.EventHandler(this.ToolStripButton5_Click);
+            // 
+            // toolStripButton6
+            // 
+            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
+            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton6.Name = "toolStripButton6";
+            this.toolStripButton6.Size = new System.Drawing.Size(24, 24);
+            this.toolStripButton6.Click += new System.EventHandler(this.ToolStripButton6_Click);
+            // 
+            // toolStripButton7
+            // 
+            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
+            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(24, 24);
+            this.toolStripButton7.Click += new System.EventHandler(this.ToolStripButton7_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(0, 24);
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(21, 24);
+            this.toolStripLabel3.Text = "...";
+            this.toolStripLabel3.Click += new System.EventHandler(this.ToolStripLabel3_Click);
             // 
             // mainForm
             // 
@@ -349,13 +481,15 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(936, 703);
-            this.Controls.Add(this.axTOCControl1);
             this.Controls.Add(this.axToolbarControl1);
+            this.Controls.Add(this.mainMapControl);
+            this.Controls.Add(this.axTOCControl1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.EagleEyeMapControl);
-            this.Controls.Add(this.axLicenseControl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.mainMapControl);
+            this.Controls.Add(this.axLicenseControl1);
             this.Font = new System.Drawing.Font("Ink Free", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "mainForm";
@@ -364,11 +498,13 @@
             this.Load += new System.EventHandler(this.mainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.mainMapControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axToolbarControl1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EagleEyeMapControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axTOCControl1)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axToolbarControl1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -379,7 +515,6 @@
         public ESRI.ArcGIS.Controls.AxMapControl mainMapControl;
         public System.Windows.Forms.StatusStrip statusStrip1;
         public ESRI.ArcGIS.Controls.AxLicenseControl axLicenseControl1;
-        public ESRI.ArcGIS.Controls.AxToolbarControl axToolbarControl1;
         public ESRI.ArcGIS.Controls.AxTOCControl axTOCControl1;
         public System.Windows.Forms.MenuStrip menuStrip1;
         public System.Windows.Forms.ToolStripMenuItem file_menu;
@@ -396,17 +531,31 @@
         public System.Windows.Forms.ToolStripMenuItem deleteLayerToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem clearAllLayersToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem moveLayerToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem customizesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem customToolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem zoomToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem zoomOutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem fullExtentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem boxSelectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openFileDatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearSelectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addRasterToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem layManageWindowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem scalesToSelectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bookMarkToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addBookMarkToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageBookMarkToolStripMenuItem;
+        public System.Windows.Forms.ToolStrip toolStrip1;
+        public ESRI.ArcGIS.Controls.AxToolbarControl axToolbarControl1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ToolStripButton toolStripButton5;
+        private System.Windows.Forms.ToolStripButton toolStripButton6;
+        private System.Windows.Forms.ToolStripButton toolStripButton7;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
     }
 }
 
