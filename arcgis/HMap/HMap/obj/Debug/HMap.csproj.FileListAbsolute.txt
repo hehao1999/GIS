@@ -52,3 +52,4 @@ H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.SystemUI.xml
 H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.layerManageForm.resources
 H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.bookMark.resources
 H:\git\GIS\arcgis\HMap\HMap\obj\Debug\MapOperation.FormManageBookMarks.resources
+H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.FormMeasureResult.resources

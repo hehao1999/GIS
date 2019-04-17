@@ -797,11 +797,15 @@ namespace HMap
 
         #endregion 鹰眼
 
-        #region 添加书签
+        #region 距离量算
 
-        //public static void add_bookmark()
-        //{
-        //}
+        public static void distance_measure()
+        {
+            mainForm.mainform.mainMapControl.CurrentTool = null;
+            ICommand pCommand = new ESRI.ArcGIS.Controls.ControlsMapMeasureToolClass();
+            pCommand.OnCreate(mainForm.mainform.mainMapControl.Object);
+            pCommand.OnClick();
+        }
 
         #endregion 添加书签
     }
