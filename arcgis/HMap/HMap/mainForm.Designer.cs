@@ -78,6 +78,7 @@
             this.axToolbarControl1 = new ESRI.ArcGIS.Controls.AxToolbarControl();
             this.label1 = new System.Windows.Forms.Label();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.findByAttributeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainMapControl)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).BeginInit();
@@ -286,7 +287,8 @@
             this.scalesToSelectionToolStripMenuItem,
             this.addRasterToolStripMenuItem,
             this.clearSelectionToolStripMenuItem,
-            this.openFileDatabaseToolStripMenuItem});
+            this.openFileDatabaseToolStripMenuItem,
+            this.findByAttributeToolStripMenuItem});
             this.customToolsToolStripMenuItem.Name = "customToolsToolStripMenuItem";
             this.customToolsToolStripMenuItem.Size = new System.Drawing.Size(119, 27);
             this.customToolsToolStripMenuItem.Text = "custom tools";
@@ -513,6 +515,13 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(54, 20);
             this.toolStripStatusLabel1.Text = "坐标：";
             // 
+            // findByAttributeToolStripMenuItem
+            // 
+            this.findByAttributeToolStripMenuItem.Name = "findByAttributeToolStripMenuItem";
+            this.findByAttributeToolStripMenuItem.Size = new System.Drawing.Size(274, 28);
+            this.findByAttributeToolStripMenuItem.Text = "Find By Attribute";
+            this.findByAttributeToolStripMenuItem.Click += new System.EventHandler(this.FindByAttributeToolStripMenuItem_Click);
+            // 
             // mainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -601,6 +610,7 @@
         private System.Windows.Forms.ToolStripMenuItem distanceMeasureToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem areaMeasureToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripMenuItem findByAttributeToolStripMenuItem;
     }
 }
 

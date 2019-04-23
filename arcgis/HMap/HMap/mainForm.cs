@@ -537,5 +537,11 @@ namespace HMap
             pMouseOperate = string.Empty;
             mainMapControl.MousePointer = esriControlsMousePointer.esriPointerDefault;
         }
+
+        private void FindByAttributeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAttriQuery frmAttQDlg = new frmAttriQuery();
+            frmAttQDlg.Show();
+        }
     }
 }

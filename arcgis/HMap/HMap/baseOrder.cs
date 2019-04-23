@@ -15,7 +15,6 @@ namespace HMap
     {
         //鹰眼同步
         private static bool bCanDrag;              //鹰眼地图上的矩形框可移动的标志
-
         private static IPoint pMoveRectPoint;      //记录在移动鹰眼地图上的矩形框时鼠标的位置
         private static IEnvelope pEnv;             //记录数据视图的Extent
         public static IFeatureLayer pTocFeatureLayer = null;
@@ -797,16 +796,13 @@ namespace HMap
 
         #endregion 鹰眼
 
-        #region 距离量算
+        #region 按属性查询
 
-        public static void distance_measure()
+        public static void attr_query()
         {
-            mainForm.mainform.mainMapControl.CurrentTool = null;
-            ICommand pCommand = new ESRI.ArcGIS.Controls.ControlsMapMeasureToolClass();
-            pCommand.OnCreate(mainForm.mainform.mainMapControl.Object);
-            pCommand.OnClick();
+
         }
 
-        #endregion 添加书签
+        #endregion
     }
 }

@@ -109,6 +109,12 @@
     <Compile Include="FormManageBookMarks .Designer.cs">
       <DependentUpon>FormManageBookMarks .cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAttriQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAttriQuery.Designer.cs">
+      <DependentUpon>frmAttriQuery.cs</DependentUpon>
+    </Compile>
     <Compile Include="layerManage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManageBookMarks .resx">
       <DependentUpon>FormManageBookMarks .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAttriQuery.resx">
+      <DependentUpon>frmAttriQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="layerManage.resx">
       <DependentUpon>layerManage.cs</DependentUpon>
