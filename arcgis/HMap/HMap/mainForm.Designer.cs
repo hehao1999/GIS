@@ -57,6 +57,9 @@
             this.addRasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.measuresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.distanceMeasureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.areaMeasureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EagleEyeMapControl = new ESRI.ArcGIS.Controls.AxMapControl();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.axTOCControl1 = new ESRI.ArcGIS.Controls.AxTOCControl();
@@ -74,10 +77,9 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.axToolbarControl1 = new ESRI.ArcGIS.Controls.AxToolbarControl();
             this.label1 = new System.Windows.Forms.Label();
-            this.measuresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.distanceMeasureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.areaMeasureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.mainMapControl)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EagleEyeMapControl)).BeginInit();
@@ -106,9 +108,11 @@
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip1.Location = new System.Drawing.Point(0, 681);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 678);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(904, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(904, 25);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -322,6 +326,29 @@
             this.openFileDatabaseToolStripMenuItem.Text = "Load PersonalDatabase";
             this.openFileDatabaseToolStripMenuItem.Click += new System.EventHandler(this.openFileDatabaseToolStripMenuItem_Click);
             // 
+            // measuresToolStripMenuItem
+            // 
+            this.measuresToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.distanceMeasureToolStripMenuItem,
+            this.areaMeasureToolStripMenuItem});
+            this.measuresToolStripMenuItem.Name = "measuresToolStripMenuItem";
+            this.measuresToolStripMenuItem.Size = new System.Drawing.Size(98, 27);
+            this.measuresToolStripMenuItem.Text = "Measures";
+            // 
+            // distanceMeasureToolStripMenuItem
+            // 
+            this.distanceMeasureToolStripMenuItem.Name = "distanceMeasureToolStripMenuItem";
+            this.distanceMeasureToolStripMenuItem.Size = new System.Drawing.Size(223, 28);
+            this.distanceMeasureToolStripMenuItem.Text = "distance measure";
+            this.distanceMeasureToolStripMenuItem.Click += new System.EventHandler(this.DistanceMeasureToolStripMenuItem_Click);
+            // 
+            // areaMeasureToolStripMenuItem
+            // 
+            this.areaMeasureToolStripMenuItem.Name = "areaMeasureToolStripMenuItem";
+            this.areaMeasureToolStripMenuItem.Size = new System.Drawing.Size(223, 28);
+            this.areaMeasureToolStripMenuItem.Text = "area measure";
+            this.areaMeasureToolStripMenuItem.Click += new System.EventHandler(this.AreaMeasureToolStripMenuItem_Click);
+            // 
             // EagleEyeMapControl
             // 
             this.EagleEyeMapControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -480,28 +507,11 @@
             this.label1.Text = "                                                                                 " +
     "                                                                   ";
             // 
-            // measuresToolStripMenuItem
+            // toolStripStatusLabel1
             // 
-            this.measuresToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.distanceMeasureToolStripMenuItem,
-            this.areaMeasureToolStripMenuItem});
-            this.measuresToolStripMenuItem.Name = "measuresToolStripMenuItem";
-            this.measuresToolStripMenuItem.Size = new System.Drawing.Size(98, 27);
-            this.measuresToolStripMenuItem.Text = "Measures";
-            // 
-            // distanceMeasureToolStripMenuItem
-            // 
-            this.distanceMeasureToolStripMenuItem.Name = "distanceMeasureToolStripMenuItem";
-            this.distanceMeasureToolStripMenuItem.Size = new System.Drawing.Size(223, 28);
-            this.distanceMeasureToolStripMenuItem.Text = "distance measure";
-            this.distanceMeasureToolStripMenuItem.Click += new System.EventHandler(this.DistanceMeasureToolStripMenuItem_Click);
-            // 
-            // areaMeasureToolStripMenuItem
-            // 
-            this.areaMeasureToolStripMenuItem.Name = "areaMeasureToolStripMenuItem";
-            this.areaMeasureToolStripMenuItem.Size = new System.Drawing.Size(223, 28);
-            this.areaMeasureToolStripMenuItem.Text = "area measure";
-            this.areaMeasureToolStripMenuItem.Click += new System.EventHandler(this.AreaMeasureToolStripMenuItem_Click);
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(54, 20);
+            this.toolStripStatusLabel1.Text = "坐标：";
             // 
             // mainForm
             // 
@@ -526,6 +536,8 @@
             this.Text = "Map By 何豪";
             this.Load += new System.EventHandler(this.mainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.mainMapControl)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -588,6 +600,7 @@
         private System.Windows.Forms.ToolStripMenuItem measuresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem distanceMeasureToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem areaMeasureToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 
