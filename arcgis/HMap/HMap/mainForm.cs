@@ -793,6 +793,7 @@ namespace HMap
             axTOCControl1.Update();
         }
 
+        //简单填充符号化
         private void SimpleFillSymbolToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //获得面图层，要求当前地图文档第三个图层为面图层 
