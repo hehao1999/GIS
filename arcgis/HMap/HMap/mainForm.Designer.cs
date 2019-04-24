@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.mainMapControl = new ESRI.ArcGIS.Controls.AxMapControl();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.axLicenseControl1 = new ESRI.ArcGIS.Controls.AxLicenseControl();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.file_menu = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,6 +58,7 @@
             this.addRasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findByAttributeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.measuresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.distanceMeasureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.areaMeasureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,8 +79,13 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.axToolbarControl1 = new ESRI.ArcGIS.Controls.AxToolbarControl();
             this.label1 = new System.Windows.Forms.Label();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.findByAttributeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.symbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.markerSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.arrowMarkerSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.characterMarkerSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureMarkerSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.multiLayerMarkerSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.simpleLineSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainMapControl)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).BeginInit();
@@ -117,6 +124,12 @@
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(54, 20);
+            this.toolStripStatusLabel1.Text = "坐标：";
+            // 
             // axLicenseControl1
             // 
             this.axLicenseControl1.Dock = System.Windows.Forms.DockStyle.Right;
@@ -137,7 +150,8 @@
             this.layManag_menu,
             this.bookMarkToolStripMenuItem,
             this.customToolsToolStripMenuItem,
-            this.measuresToolStripMenuItem});
+            this.measuresToolStripMenuItem,
+            this.symbolToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(904, 31);
@@ -328,6 +342,13 @@
             this.openFileDatabaseToolStripMenuItem.Text = "Load PersonalDatabase";
             this.openFileDatabaseToolStripMenuItem.Click += new System.EventHandler(this.openFileDatabaseToolStripMenuItem_Click);
             // 
+            // findByAttributeToolStripMenuItem
+            // 
+            this.findByAttributeToolStripMenuItem.Name = "findByAttributeToolStripMenuItem";
+            this.findByAttributeToolStripMenuItem.Size = new System.Drawing.Size(274, 28);
+            this.findByAttributeToolStripMenuItem.Text = "Find By Attribute";
+            this.findByAttributeToolStripMenuItem.Click += new System.EventHandler(this.FindByAttributeToolStripMenuItem_Click);
+            // 
             // measuresToolStripMenuItem
             // 
             this.measuresToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -509,18 +530,60 @@
             this.label1.Text = "                                                                                 " +
     "                                                                   ";
             // 
-            // toolStripStatusLabel1
+            // symbolToolStripMenuItem
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(54, 20);
-            this.toolStripStatusLabel1.Text = "坐标：";
+            this.symbolToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.markerSymbolToolStripMenuItem,
+            this.arrowMarkerSymbolToolStripMenuItem,
+            this.characterMarkerSymbolToolStripMenuItem,
+            this.pictureMarkerSymbolToolStripMenuItem,
+            this.multiLayerMarkerSymbolToolStripMenuItem,
+            this.simpleLineSymbolToolStripMenuItem});
+            this.symbolToolStripMenuItem.Name = "symbolToolStripMenuItem";
+            this.symbolToolStripMenuItem.Size = new System.Drawing.Size(76, 27);
+            this.symbolToolStripMenuItem.Text = "Symbol";
             // 
-            // findByAttributeToolStripMenuItem
+            // markerSymbolToolStripMenuItem
             // 
-            this.findByAttributeToolStripMenuItem.Name = "findByAttributeToolStripMenuItem";
-            this.findByAttributeToolStripMenuItem.Size = new System.Drawing.Size(274, 28);
-            this.findByAttributeToolStripMenuItem.Text = "Find By Attribute";
-            this.findByAttributeToolStripMenuItem.Click += new System.EventHandler(this.FindByAttributeToolStripMenuItem_Click);
+            this.markerSymbolToolStripMenuItem.Name = "markerSymbolToolStripMenuItem";
+            this.markerSymbolToolStripMenuItem.Size = new System.Drawing.Size(260, 28);
+            this.markerSymbolToolStripMenuItem.Text = "Simple Marker Symbol";
+            this.markerSymbolToolStripMenuItem.Click += new System.EventHandler(this.MarkerSymbolToolStripMenuItem_Click);
+            // 
+            // arrowMarkerSymbolToolStripMenuItem
+            // 
+            this.arrowMarkerSymbolToolStripMenuItem.Name = "arrowMarkerSymbolToolStripMenuItem";
+            this.arrowMarkerSymbolToolStripMenuItem.Size = new System.Drawing.Size(260, 28);
+            this.arrowMarkerSymbolToolStripMenuItem.Text = "Arrow Marker Symbol";
+            this.arrowMarkerSymbolToolStripMenuItem.Click += new System.EventHandler(this.ArrowMarkerSymbolToolStripMenuItem_Click);
+            // 
+            // characterMarkerSymbolToolStripMenuItem
+            // 
+            this.characterMarkerSymbolToolStripMenuItem.Name = "characterMarkerSymbolToolStripMenuItem";
+            this.characterMarkerSymbolToolStripMenuItem.Size = new System.Drawing.Size(291, 28);
+            this.characterMarkerSymbolToolStripMenuItem.Text = "Character Marker Symbol";
+            this.characterMarkerSymbolToolStripMenuItem.Click += new System.EventHandler(this.CharacterMarkerSymbolToolStripMenuItem_Click);
+            // 
+            // pictureMarkerSymbolToolStripMenuItem
+            // 
+            this.pictureMarkerSymbolToolStripMenuItem.Name = "pictureMarkerSymbolToolStripMenuItem";
+            this.pictureMarkerSymbolToolStripMenuItem.Size = new System.Drawing.Size(291, 28);
+            this.pictureMarkerSymbolToolStripMenuItem.Text = "Picture Marker Symbol";
+            this.pictureMarkerSymbolToolStripMenuItem.Click += new System.EventHandler(this.PictureMarkerSymbolToolStripMenuItem_Click);
+            // 
+            // multiLayerMarkerSymbolToolStripMenuItem
+            // 
+            this.multiLayerMarkerSymbolToolStripMenuItem.Name = "multiLayerMarkerSymbolToolStripMenuItem";
+            this.multiLayerMarkerSymbolToolStripMenuItem.Size = new System.Drawing.Size(296, 28);
+            this.multiLayerMarkerSymbolToolStripMenuItem.Text = "MultiLayer Marker Symbol";
+            this.multiLayerMarkerSymbolToolStripMenuItem.Click += new System.EventHandler(this.MultiLayerMarkerSymbolToolStripMenuItem_Click);
+            // 
+            // simpleLineSymbolToolStripMenuItem
+            // 
+            this.simpleLineSymbolToolStripMenuItem.Name = "simpleLineSymbolToolStripMenuItem";
+            this.simpleLineSymbolToolStripMenuItem.Size = new System.Drawing.Size(296, 28);
+            this.simpleLineSymbolToolStripMenuItem.Text = "Simple Line Symbol";
+            this.simpleLineSymbolToolStripMenuItem.Click += new System.EventHandler(this.SimpleLineSymbolToolStripMenuItem_Click);
             // 
             // mainForm
             // 
@@ -611,6 +674,13 @@
         private System.Windows.Forms.ToolStripMenuItem areaMeasureToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripMenuItem findByAttributeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem symbolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem markerSymbolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem arrowMarkerSymbolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem characterMarkerSymbolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pictureMarkerSymbolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem multiLayerMarkerSymbolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem simpleLineSymbolToolStripMenuItem;
     }
 }
 

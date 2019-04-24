@@ -462,6 +462,7 @@ namespace HMap
             mainForm.mainform.mainMapControl.CurrentTool = null;
             ICommand pFullExtent = new ControlsMapFullExtentCommandClass();
             pFullExtent.OnCreate(mainForm.mainform.mainMapControl.Object);
+            pFullExtent.OnClick();
         }
 
         public static void pan()
@@ -795,14 +796,5 @@ namespace HMap
         }
 
         #endregion 鹰眼
-
-        #region 按属性查询
-
-        public static void attr_query()
-        {
-
-        }
-
-        #endregion
     }
 }

@@ -6,6 +6,7 @@ using ESRI.ArcGIS.Geometry;
 using MapOperation;
 using System;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace HMap
 {
@@ -542,6 +543,254 @@ namespace HMap
         {
             frmAttriQuery frmAttQDlg = new frmAttriQuery();
             frmAttQDlg.Show();
+        }
+
+        //RGB转LONG
+        private long RGBtoLong(int Red, int Green, int Blue)
+        {
+            return Red + (0x100 * Green) + (0x10000 * Blue);
+            //return Red + (256*Green) + (65536*Blue); 
+        }
+
+        //LONG转RGB 
+        private short[] LongToRGB(long RGBlong)
+        {
+            short[] pbyte = new short[3];
+            pbyte[0] = (short)(RGBlong % 0x100);
+            pbyte[1] = (short)((RGBlong / 0x100) % 0x100);
+            pbyte[2] = (short)((RGBlong / 0x10000) % 0x100);
+            return pbyte;
+        }
+
+        //RGB颜色构造器
+        private IRgbColor getRGB(int R, int G, int B)
+        {
+            IRgbColor pColor;
+            pColor = new RgbColorClass();
+            pColor.Red = R;
+            pColor.Green = G;
+            pColor.Blue = B;
+            return pColor;
+        }
+
+        //HSV颜色构造器
+        private IHsvColor getHSV(int Hue, int Saturation, int Val)
+        {
+            IHsvColor pColor; pColor = new HsvColorClass();
+            pColor.Hue = Hue;
+            pColor.Saturation = Saturation;
+            pColor.Value = Val; return pColor;
+        }
+
+        //AlgorithmicColorRamp是通过起止颜色来确定多个在这两个颜色之间的色带
+        private IEnumColors createAlgorithmicColorRamp(IColor fromColor, IColor toColor, int count)
+        {
+            IAlgorithmicColorRamp pRampColor;
+            pRampColor = new AlgorithmicColorRampClass();
+            pRampColor.FromColor = fromColor;
+            pRampColor.ToColor = toColor;
+            pRampColor.Size = count;
+            bool ok;
+            pRampColor.CreateRamp(out ok);
+            return pRampColor.Colors;
+        }
+
+        //简单符号化
+        private void MarkerSymbolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //获得点图层，要求当前地图文档第一个图层为点图层 
+                IFeatureLayer layer;
+                layer = mainMapControl.get_Layer(0) as IFeatureLayer;
+                //QI到IGeoFeatureLayer 
+                IGeoFeatureLayer geoFeatureLayer = layer as IGeoFeatureLayer;
+                //新建SimpleRendererClass对象 
+                SimpleRenderer simpleRender = new SimpleRendererClass();
+                ISimpleMarkerSymbol pMarkerSymbol;
+                IColor pColor = new RgbColorClass();
+                pColor.RGB = 2256;
+                pMarkerSymbol = new SimpleMarkerSymbolClass();
+                pMarkerSymbol.Style = esriSimpleMarkerStyle.esriSMSCircle;
+                pMarkerSymbol.Color = pColor;
+                pMarkerSymbol.Angle = 60;
+                pMarkerSymbol.Size = 6;
+                simpleRender.Symbol = pMarkerSymbol as ISymbol;
+                geoFeatureLayer.Renderer = simpleRender as IFeatureRenderer;
+                mainMapControl.Refresh();
+                axTOCControl1.Update();
+            }
+            catch
+            {
+                MessageBox.Show("没有可以实例化的图层");
+            }
+        }
+
+        //箭头符号化
+        private void ArrowMarkerSymbolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //获得点图层，要求当前地图文档第一个图层为点图层 
+                IFeatureLayer layer;
+                layer = mainMapControl.get_Layer(0) as IFeatureLayer;
+                //QI到IGeoFeatureLayer 
+                IGeoFeatureLayer geoFeatureLayer = layer as IGeoFeatureLayer;
+                SimpleRenderer simpleRender = new SimpleRendererClass();
+                IArrowMarkerSymbol pMarkerSymbol;
+                IRgbColor pColor = new RgbColorClass();
+                pColor.Red = 255;
+                pColor.Green = 0;
+                pColor.Blue = 255;
+                pMarkerSymbol = new ArrowMarkerSymbolClass();
+                pMarkerSymbol.Length = 20;
+                pMarkerSymbol.Color = pColor;
+                pMarkerSymbol.Width = 10;
+                //箭头底边的宽度
+                pMarkerSymbol.Angle = 60;
+                simpleRender.Symbol = pMarkerSymbol as ISymbol;
+                geoFeatureLayer.Renderer = simpleRender as IFeatureRenderer;
+                mainMapControl.Refresh();
+                axTOCControl1.Update();
+            }
+            catch
+            {
+                MessageBox.Show("没有可以实例化的图层");
+            }
+        }
+
+        //文字符号化
+        private void CharacterMarkerSymbolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //获得点图层，要求当前地图文档第一个图层为点图层 
+                IFeatureLayer layer;
+                layer = mainMapControl.get_Layer(0) as IFeatureLayer;
+                //QI到IGeoFeatureLayer 
+                IGeoFeatureLayer geoFeatureLayer = layer as IGeoFeatureLayer;
+                SimpleRenderer simpleRender = new SimpleRendererClass();
+                ICharacterMarkerSymbol pCharacterMarkerSymbol = new CharacterMarkerSymbolClass();
+                IColor pColor = new RgbColorClass();
+                pColor.RGB = 2256;
+                stdole.IFontDisp font = new stdole.StdFontClass() as stdole.IFontDisp;
+                font.Name = "Arial"; font.Size = 30;
+                font.Bold = true;
+                pCharacterMarkerSymbol.Font = font;
+                pCharacterMarkerSymbol.Color = pColor;
+                pCharacterMarkerSymbol.Size = 20;
+                pCharacterMarkerSymbol.CharacterIndex = 55;
+                //ASCII55对应数字7 
+                simpleRender.Symbol = pCharacterMarkerSymbol as ISymbol;
+                geoFeatureLayer.Renderer = simpleRender as IFeatureRenderer;
+                mainMapControl.Refresh();
+                axTOCControl1.Update();
+            }
+            catch
+            {
+                MessageBox.Show("没有可以实例化的图层");
+            }
+        }
+
+        //图片符号化
+        private void PictureMarkerSymbolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //获得点图层，要求当前地图文档第一个图层为点图层 
+                IFeatureLayer layer;
+                layer = mainMapControl.get_Layer(0) as IFeatureLayer;
+                //QI到IGeoFeatureLayer 
+                IGeoFeatureLayer geoFeatureLayer = layer as IGeoFeatureLayer;
+                SimpleRenderer simpleRender = new SimpleRendererClass();
+                //指定图片存放的位置
+                //实例化OpenFileDialog控件
+                OpenFileDialog pOpenFileDialog = new OpenFileDialog
+                {
+                    CheckFileExists = true,
+                    RestoreDirectory = true,
+                    Title = "选择图片"
+                };
+
+                if (pOpenFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string path = pOpenFileDialog.FileName;
+                    IPictureMarkerSymbol pPictureMarkerSymbol = new PictureMarkerSymbolClass();
+                    pPictureMarkerSymbol.Size = 40;
+                    pPictureMarkerSymbol.CreateMarkerSymbolFromFile(esriIPictureType.esriIPictureBitmap, path);
+                    simpleRender.Symbol = pPictureMarkerSymbol as ISymbol;
+                    geoFeatureLayer.Renderer = simpleRender as IFeatureRenderer;
+                    mainMapControl.Refresh();
+                    axTOCControl1.Update();
+                }                   
+            }
+            catch
+            {
+                MessageBox.Show("没有可以实例化的图层");
+            }
+        }
+
+        //组合点符号化
+        private void MultiLayerMarkerSymbolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //获得点图层，要求当前地图文档第一个图层为点图层 
+                IFeatureLayer layer;
+                layer = mainMapControl.get_Layer(0) as IFeatureLayer;
+                //QI到IGeoFeatureLayer 
+                IGeoFeatureLayer geoFeatureLayer = layer as IGeoFeatureLayer;
+                SimpleRenderer simpleRender = new SimpleRendererClass();
+                //创建第一组成成分点符号的颜色
+                IColor pColor = new RgbColorClass();
+                pColor.RGB = 2256;
+                //创建第二组成成分点符号的颜色
+                IColor pColor1 = new RgbColorClass();
+                pColor1.RGB = 0;
+                //创建简单点符号
+                ISimpleMarkerSymbol pMarkerSymbol = new SimpleMarkerSymbolClass();
+                pMarkerSymbol.Style = esriSimpleMarkerStyle.esriSMSCross;
+                pMarkerSymbol.Color = pColor;
+                pMarkerSymbol.Angle = 60;
+                //创建箭头点符号
+                IArrowMarkerSymbol pArrowMarkerSymbol = new ArrowMarkerSymbolClass();
+                pArrowMarkerSymbol.Length = 5;
+                pArrowMarkerSymbol.Width = 10;
+                pArrowMarkerSymbol.Color = pColor1;
+                //创建以上两种符号的组合符号
+                IMultiLayerMarkerSymbol pMultiLayerMarkerSymbol = new MultiLayerMarkerSymbolClass();
+                pMultiLayerMarkerSymbol.AddLayer(pArrowMarkerSymbol);
+                pMultiLayerMarkerSymbol.AddLayer(pMarkerSymbol);
+                simpleRender.Symbol = pMultiLayerMarkerSymbol as ISymbol;
+                geoFeatureLayer.Renderer = simpleRender as IFeatureRenderer;
+                mainMapControl.Refresh();
+                axTOCControl1.Update();
+            }
+            catch
+            {
+                MessageBox.Show("没有可以实例化的图层");
+            }
+        }
+
+        //简单线符号化
+        private void SimpleLineSymbolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //获得线图层，要求当前地图文档第二个图层为线图层 
+            IFeatureLayer layer;
+            layer = mainMapControl.get_Layer(1) as IFeatureLayer;
+            //QI到IGeoFeatureLayer 
+            IGeoFeatureLayer geoFeatureLayer = layer as IGeoFeatureLayer;
+            ISimpleRenderer simpleRender = new SimpleRendererClass();
+            IColor pColor = new RgbColorClass();
+            pColor.RGB = 2256;
+            ISimpleLineSymbol pSimpleLineSymbol = new SimpleLineSymbolClass();
+            pSimpleLineSymbol.Color = pColor;
+            pSimpleLineSymbol.Width = 3;
+            pSimpleLineSymbol.Style = esriSimpleLineStyle.esriSLSDashDot;
+            simpleRender.Symbol = pSimpleLineSymbol as ISymbol;
+            geoFeatureLayer.Renderer = simpleRender as IFeatureRenderer;
+            mainMapControl.Refresh();
+            axTOCControl1.Update();
         }
     }
 }
