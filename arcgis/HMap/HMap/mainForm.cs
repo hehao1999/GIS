@@ -792,5 +792,28 @@ namespace HMap
             mainMapControl.Refresh();
             axTOCControl1.Update();
         }
+
+        private void SimpleFillSymbolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //获得面图层，要求当前地图文档第三个图层为面图层 
+            IFeatureLayer layer = mainMapControl.get_Layer(2) as IFeatureLayer;
+            IGeoFeatureLayer geoFeatureLayer = layer as IGeoFeatureLayer;
+            ISimpleRenderer simpleRender = new SimpleRendererClass();
+            IColor pLineColor = new RgbColorClass();
+            pLineColor.RGB = 2256;
+            IColor pFillColor = new RgbColorClass();
+            pFillColor.RGB = 255;
+            ISimpleLineSymbol pSimpleLineSymbol = new SimpleLineSymbolClass();
+            pSimpleLineSymbol.Width = 5;
+            pSimpleLineSymbol.Color = pLineColor;
+            ISimpleFillSymbol pSimpleFillSymbol = new SimpleFillSymbolClass();
+            pSimpleFillSymbol.Style = esriSimpleFillStyle.esriSFSCross;
+            pSimpleFillSymbol.Outline = pSimpleLineSymbol;
+            pSimpleFillSymbol.Color = pFillColor;
+            simpleRender.Symbol = pSimpleFillSymbol as ISymbol;
+            geoFeatureLayer.Renderer = simpleRender as IFeatureRenderer;
+            mainMapControl.Refresh();
+            axTOCControl1.Update();
+        }
     }
 }
