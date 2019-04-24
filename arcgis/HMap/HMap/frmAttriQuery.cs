@@ -140,7 +140,8 @@ namespace HMap
             listBoxValues.Items.Clear();
             IFeatureCursor pFeatureCursor;
             IFeatureClass pFeatureClass;
-            IFeature pFeature; double i = 0;
+            IFeature pFeature;
+            double i = 0;
             //记录总数 
             if (strSelectedFieldName != null)
             {
