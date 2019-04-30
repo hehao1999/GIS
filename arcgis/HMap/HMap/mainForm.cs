@@ -816,5 +816,10 @@ namespace HMap
             mainMapControl.Refresh();
             axTOCControl1.Update();
         }
+
+        private void AddWordsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+        }
     }
 }

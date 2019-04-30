@@ -87,6 +87,7 @@
             this.multiLayerMarkerSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.simpleLineSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.simpleFillSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addWordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainMapControl)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).BeginInit();
@@ -540,7 +541,8 @@
             this.pictureMarkerSymbolToolStripMenuItem,
             this.multiLayerMarkerSymbolToolStripMenuItem,
             this.simpleLineSymbolToolStripMenuItem,
-            this.simpleFillSymbolToolStripMenuItem});
+            this.simpleFillSymbolToolStripMenuItem,
+            this.addWordsToolStripMenuItem});
             this.symbolToolStripMenuItem.Name = "symbolToolStripMenuItem";
             this.symbolToolStripMenuItem.Size = new System.Drawing.Size(76, 27);
             this.symbolToolStripMenuItem.Text = "Symbol";
@@ -593,6 +595,13 @@
             this.simpleFillSymbolToolStripMenuItem.Size = new System.Drawing.Size(296, 28);
             this.simpleFillSymbolToolStripMenuItem.Text = "Simple Fill Symbol";
             this.simpleFillSymbolToolStripMenuItem.Click += new System.EventHandler(this.SimpleFillSymbolToolStripMenuItem_Click);
+            // 
+            // addWordsToolStripMenuItem
+            // 
+            this.addWordsToolStripMenuItem.Name = "addWordsToolStripMenuItem";
+            this.addWordsToolStripMenuItem.Size = new System.Drawing.Size(296, 28);
+            this.addWordsToolStripMenuItem.Text = "Add Words";
+            this.addWordsToolStripMenuItem.Click += new System.EventHandler(this.AddWordsToolStripMenuItem_Click);
             // 
             // mainForm
             // 
@@ -691,6 +700,7 @@
         private System.Windows.Forms.ToolStripMenuItem multiLayerMarkerSymbolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem simpleLineSymbolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem simpleFillSymbolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addWordsToolStripMenuItem;
     }
 }
 
