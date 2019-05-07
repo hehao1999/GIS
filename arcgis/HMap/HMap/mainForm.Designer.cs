@@ -62,6 +62,15 @@
             this.measuresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.distanceMeasureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.areaMeasureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.symbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.markerSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.arrowMarkerSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.characterMarkerSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureMarkerSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.multiLayerMarkerSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.simpleLineSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.simpleFillSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addWordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EagleEyeMapControl = new ESRI.ArcGIS.Controls.AxMapControl();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.axTOCControl1 = new ESRI.ArcGIS.Controls.AxTOCControl();
@@ -79,15 +88,8 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.axToolbarControl1 = new ESRI.ArcGIS.Controls.AxToolbarControl();
             this.label1 = new System.Windows.Forms.Label();
-            this.symbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.markerSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.arrowMarkerSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.characterMarkerSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pictureMarkerSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.multiLayerMarkerSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.simpleLineSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.simpleFillSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addWordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.文本内容ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.C = new System.Windows.Forms.ToolStripTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.mainMapControl)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).BeginInit();
@@ -153,7 +155,9 @@
             this.bookMarkToolStripMenuItem,
             this.customToolsToolStripMenuItem,
             this.measuresToolStripMenuItem,
-            this.symbolToolStripMenuItem});
+            this.symbolToolStripMenuItem,
+            this.文本内容ToolStripMenuItem,
+            this.C});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(904, 31);
@@ -374,6 +378,77 @@
             this.areaMeasureToolStripMenuItem.Text = "area measure";
             this.areaMeasureToolStripMenuItem.Click += new System.EventHandler(this.AreaMeasureToolStripMenuItem_Click);
             // 
+            // symbolToolStripMenuItem
+            // 
+            this.symbolToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.markerSymbolToolStripMenuItem,
+            this.arrowMarkerSymbolToolStripMenuItem,
+            this.characterMarkerSymbolToolStripMenuItem,
+            this.pictureMarkerSymbolToolStripMenuItem,
+            this.multiLayerMarkerSymbolToolStripMenuItem,
+            this.simpleLineSymbolToolStripMenuItem,
+            this.simpleFillSymbolToolStripMenuItem,
+            this.addWordsToolStripMenuItem});
+            this.symbolToolStripMenuItem.Name = "symbolToolStripMenuItem";
+            this.symbolToolStripMenuItem.Size = new System.Drawing.Size(76, 27);
+            this.symbolToolStripMenuItem.Text = "Symbol";
+            // 
+            // markerSymbolToolStripMenuItem
+            // 
+            this.markerSymbolToolStripMenuItem.Name = "markerSymbolToolStripMenuItem";
+            this.markerSymbolToolStripMenuItem.Size = new System.Drawing.Size(296, 28);
+            this.markerSymbolToolStripMenuItem.Text = "Simple Marker Symbol";
+            this.markerSymbolToolStripMenuItem.Click += new System.EventHandler(this.MarkerSymbolToolStripMenuItem_Click);
+            // 
+            // arrowMarkerSymbolToolStripMenuItem
+            // 
+            this.arrowMarkerSymbolToolStripMenuItem.Name = "arrowMarkerSymbolToolStripMenuItem";
+            this.arrowMarkerSymbolToolStripMenuItem.Size = new System.Drawing.Size(296, 28);
+            this.arrowMarkerSymbolToolStripMenuItem.Text = "Arrow Marker Symbol";
+            this.arrowMarkerSymbolToolStripMenuItem.Click += new System.EventHandler(this.ArrowMarkerSymbolToolStripMenuItem_Click);
+            // 
+            // characterMarkerSymbolToolStripMenuItem
+            // 
+            this.characterMarkerSymbolToolStripMenuItem.Name = "characterMarkerSymbolToolStripMenuItem";
+            this.characterMarkerSymbolToolStripMenuItem.Size = new System.Drawing.Size(296, 28);
+            this.characterMarkerSymbolToolStripMenuItem.Text = "Character Marker Symbol";
+            this.characterMarkerSymbolToolStripMenuItem.Click += new System.EventHandler(this.CharacterMarkerSymbolToolStripMenuItem_Click);
+            // 
+            // pictureMarkerSymbolToolStripMenuItem
+            // 
+            this.pictureMarkerSymbolToolStripMenuItem.Name = "pictureMarkerSymbolToolStripMenuItem";
+            this.pictureMarkerSymbolToolStripMenuItem.Size = new System.Drawing.Size(296, 28);
+            this.pictureMarkerSymbolToolStripMenuItem.Text = "Picture Marker Symbol";
+            this.pictureMarkerSymbolToolStripMenuItem.Click += new System.EventHandler(this.PictureMarkerSymbolToolStripMenuItem_Click);
+            // 
+            // multiLayerMarkerSymbolToolStripMenuItem
+            // 
+            this.multiLayerMarkerSymbolToolStripMenuItem.Name = "multiLayerMarkerSymbolToolStripMenuItem";
+            this.multiLayerMarkerSymbolToolStripMenuItem.Size = new System.Drawing.Size(296, 28);
+            this.multiLayerMarkerSymbolToolStripMenuItem.Text = "MultiLayer Marker Symbol";
+            this.multiLayerMarkerSymbolToolStripMenuItem.Click += new System.EventHandler(this.MultiLayerMarkerSymbolToolStripMenuItem_Click);
+            // 
+            // simpleLineSymbolToolStripMenuItem
+            // 
+            this.simpleLineSymbolToolStripMenuItem.Name = "simpleLineSymbolToolStripMenuItem";
+            this.simpleLineSymbolToolStripMenuItem.Size = new System.Drawing.Size(296, 28);
+            this.simpleLineSymbolToolStripMenuItem.Text = "Simple Line Symbol";
+            this.simpleLineSymbolToolStripMenuItem.Click += new System.EventHandler(this.SimpleLineSymbolToolStripMenuItem_Click);
+            // 
+            // simpleFillSymbolToolStripMenuItem
+            // 
+            this.simpleFillSymbolToolStripMenuItem.Name = "simpleFillSymbolToolStripMenuItem";
+            this.simpleFillSymbolToolStripMenuItem.Size = new System.Drawing.Size(296, 28);
+            this.simpleFillSymbolToolStripMenuItem.Text = "Simple Fill Symbol";
+            this.simpleFillSymbolToolStripMenuItem.Click += new System.EventHandler(this.SimpleFillSymbolToolStripMenuItem_Click);
+            // 
+            // addWordsToolStripMenuItem
+            // 
+            this.addWordsToolStripMenuItem.Name = "addWordsToolStripMenuItem";
+            this.addWordsToolStripMenuItem.Size = new System.Drawing.Size(296, 28);
+            this.addWordsToolStripMenuItem.Text = "Add Words";
+            this.addWordsToolStripMenuItem.Click += new System.EventHandler(this.AddWordsToolStripMenuItem_Click);
+            // 
             // EagleEyeMapControl
             // 
             this.EagleEyeMapControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -532,76 +607,17 @@
             this.label1.Text = "                                                                                 " +
     "                                                                   ";
             // 
-            // symbolToolStripMenuItem
+            // 文本内容ToolStripMenuItem
             // 
-            this.symbolToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.markerSymbolToolStripMenuItem,
-            this.arrowMarkerSymbolToolStripMenuItem,
-            this.characterMarkerSymbolToolStripMenuItem,
-            this.pictureMarkerSymbolToolStripMenuItem,
-            this.multiLayerMarkerSymbolToolStripMenuItem,
-            this.simpleLineSymbolToolStripMenuItem,
-            this.simpleFillSymbolToolStripMenuItem,
-            this.addWordsToolStripMenuItem});
-            this.symbolToolStripMenuItem.Name = "symbolToolStripMenuItem";
-            this.symbolToolStripMenuItem.Size = new System.Drawing.Size(76, 27);
-            this.symbolToolStripMenuItem.Text = "Symbol";
+            this.文本内容ToolStripMenuItem.Name = "文本内容ToolStripMenuItem";
+            this.文本内容ToolStripMenuItem.Size = new System.Drawing.Size(70, 27);
+            this.文本内容ToolStripMenuItem.Text = "TEXT:";
+            this.文本内容ToolStripMenuItem.Click += new System.EventHandler(this.文本内容ToolStripMenuItem_Click);
             // 
-            // markerSymbolToolStripMenuItem
+            // C
             // 
-            this.markerSymbolToolStripMenuItem.Name = "markerSymbolToolStripMenuItem";
-            this.markerSymbolToolStripMenuItem.Size = new System.Drawing.Size(260, 28);
-            this.markerSymbolToolStripMenuItem.Text = "Simple Marker Symbol";
-            this.markerSymbolToolStripMenuItem.Click += new System.EventHandler(this.MarkerSymbolToolStripMenuItem_Click);
-            // 
-            // arrowMarkerSymbolToolStripMenuItem
-            // 
-            this.arrowMarkerSymbolToolStripMenuItem.Name = "arrowMarkerSymbolToolStripMenuItem";
-            this.arrowMarkerSymbolToolStripMenuItem.Size = new System.Drawing.Size(260, 28);
-            this.arrowMarkerSymbolToolStripMenuItem.Text = "Arrow Marker Symbol";
-            this.arrowMarkerSymbolToolStripMenuItem.Click += new System.EventHandler(this.ArrowMarkerSymbolToolStripMenuItem_Click);
-            // 
-            // characterMarkerSymbolToolStripMenuItem
-            // 
-            this.characterMarkerSymbolToolStripMenuItem.Name = "characterMarkerSymbolToolStripMenuItem";
-            this.characterMarkerSymbolToolStripMenuItem.Size = new System.Drawing.Size(291, 28);
-            this.characterMarkerSymbolToolStripMenuItem.Text = "Character Marker Symbol";
-            this.characterMarkerSymbolToolStripMenuItem.Click += new System.EventHandler(this.CharacterMarkerSymbolToolStripMenuItem_Click);
-            // 
-            // pictureMarkerSymbolToolStripMenuItem
-            // 
-            this.pictureMarkerSymbolToolStripMenuItem.Name = "pictureMarkerSymbolToolStripMenuItem";
-            this.pictureMarkerSymbolToolStripMenuItem.Size = new System.Drawing.Size(291, 28);
-            this.pictureMarkerSymbolToolStripMenuItem.Text = "Picture Marker Symbol";
-            this.pictureMarkerSymbolToolStripMenuItem.Click += new System.EventHandler(this.PictureMarkerSymbolToolStripMenuItem_Click);
-            // 
-            // multiLayerMarkerSymbolToolStripMenuItem
-            // 
-            this.multiLayerMarkerSymbolToolStripMenuItem.Name = "multiLayerMarkerSymbolToolStripMenuItem";
-            this.multiLayerMarkerSymbolToolStripMenuItem.Size = new System.Drawing.Size(296, 28);
-            this.multiLayerMarkerSymbolToolStripMenuItem.Text = "MultiLayer Marker Symbol";
-            this.multiLayerMarkerSymbolToolStripMenuItem.Click += new System.EventHandler(this.MultiLayerMarkerSymbolToolStripMenuItem_Click);
-            // 
-            // simpleLineSymbolToolStripMenuItem
-            // 
-            this.simpleLineSymbolToolStripMenuItem.Name = "simpleLineSymbolToolStripMenuItem";
-            this.simpleLineSymbolToolStripMenuItem.Size = new System.Drawing.Size(296, 28);
-            this.simpleLineSymbolToolStripMenuItem.Text = "Simple Line Symbol";
-            this.simpleLineSymbolToolStripMenuItem.Click += new System.EventHandler(this.SimpleLineSymbolToolStripMenuItem_Click);
-            // 
-            // simpleFillSymbolToolStripMenuItem
-            // 
-            this.simpleFillSymbolToolStripMenuItem.Name = "simpleFillSymbolToolStripMenuItem";
-            this.simpleFillSymbolToolStripMenuItem.Size = new System.Drawing.Size(296, 28);
-            this.simpleFillSymbolToolStripMenuItem.Text = "Simple Fill Symbol";
-            this.simpleFillSymbolToolStripMenuItem.Click += new System.EventHandler(this.SimpleFillSymbolToolStripMenuItem_Click);
-            // 
-            // addWordsToolStripMenuItem
-            // 
-            this.addWordsToolStripMenuItem.Name = "addWordsToolStripMenuItem";
-            this.addWordsToolStripMenuItem.Size = new System.Drawing.Size(296, 28);
-            this.addWordsToolStripMenuItem.Text = "Add Words";
-            this.addWordsToolStripMenuItem.Click += new System.EventHandler(this.AddWordsToolStripMenuItem_Click);
+            this.C.Name = "C";
+            this.C.Size = new System.Drawing.Size(100, 27);
             // 
             // mainForm
             // 
@@ -701,6 +717,8 @@
         private System.Windows.Forms.ToolStripMenuItem simpleLineSymbolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem simpleFillSymbolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addWordsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 文本内容ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox C;
     }
 }
 

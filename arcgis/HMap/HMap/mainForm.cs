@@ -7,6 +7,7 @@ using MapOperation;
 using System;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using stdole;
 
 namespace HMap
 {
@@ -198,6 +199,39 @@ namespace HMap
             {
                 pMouseOperate = "";
                 mainMapControl.MousePointer = esriControlsMousePointer.esriPointerDefault;
+            }
+
+            if(flag==0)
+            {
+                mainMapControl.CurrentTool = null;
+                if (e.button!=2)
+                {
+                    flag = 999;
+                    return;
+                }
+                IPoint point = new PointClass();
+                point = mainMapControl.ActiveView.ScreenDisplay.DisplayTransformation.ToMapPoint(e.x, e.y);
+                //设置文本格式
+                ITextSymbol textSymbol = new TextSymbolClass();
+                StdFont stdFont = new stdole.StdFontClass();
+                stdFont.Name = "宋体";
+                stdFont.Size = 24;
+                textSymbol.Font = (IFontDisp)stdFont;
+                textSymbol.Angle = 0;
+                textSymbol.RightToLeft = false;
+                //垂直方向基线对齐
+                textSymbol.VerticalAlignment = esriTextVerticalAlignment.esriTVABaseline;
+                //文本两端对齐
+                textSymbol.HorizontalAlignment = esriTextHorizontalAlignment.esriTHAFull;
+                textSymbol.Text = C.Text;
+                ITextElement textElement = new TextElementClass();
+                textElement.Symbol = textSymbol;
+                textElement.Text = textSymbol.Text;
+                //获取坐标，添加文本
+                IElement element = (IElement)textElement;
+                element.Geometry = point;
+                mainMapControl.ActiveView.GraphicsContainer.AddElement(element, 0);
+                mainMapControl.ActiveView.PartialRefresh(esriViewDrawPhase.esriViewGraphics, element, null);
             }
         }
         //打开个人地理数据库
@@ -820,6 +854,11 @@ namespace HMap
         private void AddWordsToolStripMenuItem_Click(object sender, EventArgs e)
         {
            
+        }
+
+        private void 文本内容ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            flag = 0;
         }
     }
 }
