@@ -6,8 +6,11 @@ using ESRI.ArcGIS.Geometry;
 using MapOperation;
 using System;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
+using ESRI.ArcGIS.DisplayUI;
 using stdole;
+using ESRI.ArcGIS.Geodatabase;
+using ESRI.ArcGIS.esriSystem;
+using ESRI.ArcGIS.Geoprocessing;
 
 namespace HMap
 {
@@ -233,6 +236,33 @@ namespace HMap
                 mainMapControl.ActiveView.GraphicsContainer.AddElement(element, 0);
                 mainMapControl.ActiveView.PartialRefresh(esriViewDrawPhase.esriViewGraphics, element, null);
             }
+
+            if(flag==66)
+            {//画线
+                IGeometry pGeom;
+                pGeom = (IGeometry)mainMapControl.TrackLine();
+                IGraphicsContainer pGraphicsContainer = mainMapControl.Map as IGraphicsContainer;
+                baseOrder.AddLineElement(pGeom, pGraphicsContainer);
+            }
+
+            if(flag==77)
+            {//闪
+                IMap pMap = mainMapControl.Map;
+                IActiveView pActiveView = pMap as IActiveView;
+                IPoint pt = pActiveView.ScreenDisplay.DisplayTransformation.ToMapPoint(e.x, e.y);
+                ITopologicalOperator pTopo = pt as ITopologicalOperator;
+                IGeometry pGeo = pTopo.Buffer(100);
+                IColor pColor = new RgbColorClass();
+                pColor.RGB = 2556;
+                SimpleFillSymbol simpleFillSymbol = new SimpleFillSymbolClass();
+                simpleFillSymbol.Color = pColor; ISymbol symbol = simpleFillSymbol as ISymbol;
+                pActiveView.ScreenDisplay.SetSymbol(symbol);
+                pActiveView.ScreenDisplay.DrawPolygon(pGeo);
+                pMap.SelectByShape(pGeo, null, false);
+                mainMapControl.FlashShape(pGeo, 25, 200, symbol);
+                mainMapControl.ActiveView.Refresh();
+            }
+
         }
         //打开个人地理数据库
         private void openFileDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -389,8 +419,15 @@ namespace HMap
         {
             sMapUnits = GetMapUnit(mainMapControl.Map.MapUnits);
             mainform.toolStripStatusLabel1.Text = String.Format("当前坐标：X = {0:#.###} Y = {1:#.###} {2}", e.mapX, e.mapY, sMapUnits);
-
-            frmMeasureResult.label2.Text = String.Format("当前坐标：X = {0:#.###} Y = {1:#.###} {2}", e.mapX, e.mapY, sMapUnits);
+            try
+            {
+                frmMeasureResult.label2.Text = String.Format("当前坐标：X = {0:#.###} Y = {1:#.###} {2}", e.mapX, e.mapY, sMapUnits);
+            }
+            catch
+            {
+                ;
+            }
+            
             pMovePt = (mainMapControl.Map as IActiveView).ScreenDisplay.DisplayTransformation.ToMapPoint(e.x, e.y);
 
             if (pMouseOperate == "MeasureLength")
@@ -859,6 +896,77 @@ namespace HMap
         private void 文本内容ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             flag = 0;
+        }
+
+
+        //符号选择器
+        private void AxTOCControl1_OnDoubleClick(object sender, ITOCControlEvents_OnDoubleClickEvent e)
+        {
+            esriTOCControlItem toccItem = esriTOCControlItem.esriTOCControlItemNone;
+            ILayer iLayer = null;
+            IBasicMap iBasicMap = null;
+            object unk = null;
+            object data = null;
+            if (e.button == 1)
+            {
+                axTOCControl1.HitTest(e.x, e.y, ref toccItem, ref iBasicMap, ref iLayer, ref unk, ref data);
+                System.Drawing.Point pos = new System.Drawing.Point(e.x, e.y);
+                if (toccItem == esriTOCControlItem.esriTOCControlItemLegendClass)
+                {
+                    ILegendClass pLC = new LegendClassClass();
+                    ILegendGroup pLG = new LegendGroupClass();
+                    if (unk is ILegendGroup)
+                    {
+                        pLG = (ILegendGroup)unk;
+                    }
+                    pLC = pLG.get_Class((int)data);
+                    ISymbol pSym = pLC.Symbol;
+                    ISymbolSelector pSS = new SymbolSelectorClass();
+                    bool bOK = false;
+                    pSS.AddSymbol(pSym);
+                    bOK = pSS.SelectSymbol(0);
+                    if (bOK)
+                    {
+                        pLC.Symbol = pSS.GetSymbolAt(0);
+                    }
+                    mainMapControl.ActiveView.Refresh();
+                    axTOCControl1.Refresh();
+                }
+            }
+        }
+
+        private void ToolStripButton8_Click(object sender, EventArgs e)
+        {
+            IMap pMap = mainMapControl.Map;
+            IFeatureLayer layer;
+            layer = mainMapControl.get_Layer(1) as IFeatureLayer;
+            IFeatureClass pFeatureClass = layer.FeatureClass;
+            string strName = "OBJECTID";
+            baseOrder.TextElementLabel(pMap, pFeatureClass, strName);
+        }
+
+        private void ToolStripLabel4_Click(object sender, EventArgs e)
+        {
+            IHookHelper map_hookHelper = new HookHelperClass();
+            //参数赋值 
+            map_hookHelper.Hook = mainMapControl.Object;
+            export_file frmExportDlg = new export_file(map_hookHelper);
+            frmExportDlg.Show();
+        }
+
+        private void ToolStripLabel5_Click(object sender, EventArgs e)
+        {
+            flag = 66;
+        }
+
+        private void ToolStripLabel6_Click(object sender, EventArgs e)
+        {
+            flag = 77;
+        }
+
+        private void 缓冲区分析_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

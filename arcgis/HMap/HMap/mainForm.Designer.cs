@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
-            this.mainMapControl = new ESRI.ArcGIS.Controls.AxMapControl();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.axLicenseControl1 = new ESRI.ArcGIS.Controls.AxLicenseControl();
@@ -71,7 +70,8 @@
             this.simpleLineSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.simpleFillSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addWordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.EagleEyeMapControl = new ESRI.ArcGIS.Controls.AxMapControl();
+            this.文本内容ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.C = new System.Windows.Forms.ToolStripTextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.axTOCControl1 = new ESRI.ArcGIS.Controls.AxTOCControl();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -85,37 +85,25 @@
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripButton8 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.axToolbarControl1 = new ESRI.ArcGIS.Controls.AxToolbarControl();
             this.label1 = new System.Windows.Forms.Label();
-            this.文本内容ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.C = new System.Windows.Forms.ToolStripTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.mainMapControl)).BeginInit();
+            this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
+            this.mainMapControl = new ESRI.ArcGIS.Controls.AxMapControl();
+            this.EagleEyeMapControl = new ESRI.ArcGIS.Controls.AxMapControl();
+            this.缓冲区分析 = new System.Windows.Forms.ToolStripLabel();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.EagleEyeMapControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axTOCControl1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axToolbarControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainMapControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EagleEyeMapControl)).BeginInit();
             this.SuspendLayout();
-            // 
-            // mainMapControl
-            // 
-            this.mainMapControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainMapControl.Location = new System.Drawing.Point(298, 59);
-            this.mainMapControl.Margin = new System.Windows.Forms.Padding(2);
-            this.mainMapControl.Name = "mainMapControl";
-            this.mainMapControl.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mainMapControl.OcxState")));
-            this.mainMapControl.Size = new System.Drawing.Size(638, 621);
-            this.mainMapControl.TabIndex = 0;
-            this.mainMapControl.OnMouseDown += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMouseDownEventHandler(this.mainMapControl_OnMouseDown);
-            this.mainMapControl.OnMouseMove += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMouseMoveEventHandler(this.MainMapControl_OnMouseMove);
-            this.mainMapControl.OnDoubleClick += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnDoubleClickEventHandler(this.MainMapControl_OnDoubleClick);
-            this.mainMapControl.OnExtentUpdated += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnExtentUpdatedEventHandler(this.mainMapControl_OnExtentUpdated);
-            this.mainMapControl.OnMapReplaced += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMapReplacedEventHandler(this.mainMapControl_OnMapReplaced);
             // 
             // statusStrip1
             // 
@@ -449,19 +437,17 @@
             this.addWordsToolStripMenuItem.Text = "Add Words";
             this.addWordsToolStripMenuItem.Click += new System.EventHandler(this.AddWordsToolStripMenuItem_Click);
             // 
-            // EagleEyeMapControl
+            // 文本内容ToolStripMenuItem
             // 
-            this.EagleEyeMapControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.EagleEyeMapControl.Location = new System.Drawing.Point(0, 456);
-            this.EagleEyeMapControl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 1);
-            this.EagleEyeMapControl.Name = "EagleEyeMapControl";
-            this.EagleEyeMapControl.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("EagleEyeMapControl.OcxState")));
-            this.EagleEyeMapControl.Size = new System.Drawing.Size(294, 224);
-            this.EagleEyeMapControl.TabIndex = 8;
-            this.EagleEyeMapControl.OnMouseDown += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMouseDownEventHandler(this.EagleEyeMapControl_OnMouseDown);
-            this.EagleEyeMapControl.OnMouseUp += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMouseUpEventHandler(this.EagleEyeMapControl_OnMouseUp);
-            this.EagleEyeMapControl.OnMouseMove += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMouseMoveEventHandler(this.EagleEyeMapControl_OnMouseMove);
+            this.文本内容ToolStripMenuItem.Name = "文本内容ToolStripMenuItem";
+            this.文本内容ToolStripMenuItem.Size = new System.Drawing.Size(70, 27);
+            this.文本内容ToolStripMenuItem.Text = "TEXT:";
+            this.文本内容ToolStripMenuItem.Click += new System.EventHandler(this.文本内容ToolStripMenuItem_Click);
+            // 
+            // C
+            // 
+            this.C.Name = "C";
+            this.C.Size = new System.Drawing.Size(100, 27);
             // 
             // contextMenuStrip1
             // 
@@ -476,6 +462,7 @@
             this.axTOCControl1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axTOCControl1.OcxState")));
             this.axTOCControl1.Size = new System.Drawing.Size(294, 392);
             this.axTOCControl1.TabIndex = 9;
+            this.axTOCControl1.OnDoubleClick += new ESRI.ArcGIS.Controls.ITOCControlEvents_Ax_OnDoubleClickEventHandler(this.AxTOCControl1_OnDoubleClick);
             // 
             // toolStrip1
             // 
@@ -492,6 +479,11 @@
             this.toolStripButton6,
             this.toolStripButton7,
             this.toolStripLabel2,
+            this.toolStripLabel6,
+            this.toolStripLabel5,
+            this.toolStripButton8,
+            this.toolStripLabel4,
+            this.缓冲区分析,
             this.toolStripLabel3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 31);
             this.toolStrip1.Name = "toolStrip1";
@@ -582,6 +574,20 @@
             this.toolStripLabel2.Name = "toolStripLabel2";
             this.toolStripLabel2.Size = new System.Drawing.Size(0, 24);
             // 
+            // toolStripButton8
+            // 
+            this.toolStripButton8.Name = "toolStripButton8";
+            this.toolStripButton8.Size = new System.Drawing.Size(39, 24);
+            this.toolStripButton8.Text = "标注";
+            this.toolStripButton8.Click += new System.EventHandler(this.ToolStripButton8_Click);
+            // 
+            // toolStripLabel4
+            // 
+            this.toolStripLabel4.Name = "toolStripLabel4";
+            this.toolStripLabel4.Size = new System.Drawing.Size(69, 24);
+            this.toolStripLabel4.Text = "输出成图";
+            this.toolStripLabel4.Click += new System.EventHandler(this.ToolStripLabel4_Click);
+            // 
             // toolStripLabel3
             // 
             this.toolStripLabel3.Name = "toolStripLabel3";
@@ -607,17 +613,60 @@
             this.label1.Text = "                                                                                 " +
     "                                                                   ";
             // 
-            // 文本内容ToolStripMenuItem
+            // toolStripLabel5
             // 
-            this.文本内容ToolStripMenuItem.Name = "文本内容ToolStripMenuItem";
-            this.文本内容ToolStripMenuItem.Size = new System.Drawing.Size(70, 27);
-            this.文本内容ToolStripMenuItem.Text = "TEXT:";
-            this.文本内容ToolStripMenuItem.Click += new System.EventHandler(this.文本内容ToolStripMenuItem_Click);
+            this.toolStripLabel5.Name = "toolStripLabel5";
+            this.toolStripLabel5.Size = new System.Drawing.Size(39, 24);
+            this.toolStripLabel5.Text = "绘线";
+            this.toolStripLabel5.Click += new System.EventHandler(this.ToolStripLabel5_Click);
             // 
-            // C
+            // toolStripLabel6
             // 
-            this.C.Name = "C";
-            this.C.Size = new System.Drawing.Size(100, 27);
+            this.toolStripLabel6.Name = "toolStripLabel6";
+            this.toolStripLabel6.Size = new System.Drawing.Size(24, 24);
+            this.toolStripLabel6.Text = "闪";
+            this.toolStripLabel6.Click += new System.EventHandler(this.ToolStripLabel6_Click);
+            // 
+            // mainMapControl
+            // 
+            this.mainMapControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mainMapControl.Location = new System.Drawing.Point(298, 59);
+            this.mainMapControl.Margin = new System.Windows.Forms.Padding(2);
+            this.mainMapControl.Name = "mainMapControl";
+            this.mainMapControl.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mainMapControl.OcxState")));
+            this.mainMapControl.Size = new System.Drawing.Size(638, 621);
+            this.mainMapControl.TabIndex = 0;
+            this.mainMapControl.OnMouseDown += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMouseDownEventHandler(this.mainMapControl_OnMouseDown);
+            this.mainMapControl.OnMouseMove += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMouseMoveEventHandler(this.MainMapControl_OnMouseMove);
+            this.mainMapControl.OnDoubleClick += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnDoubleClickEventHandler(this.MainMapControl_OnDoubleClick);
+            this.mainMapControl.OnExtentUpdated += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnExtentUpdatedEventHandler(this.mainMapControl_OnExtentUpdated);
+            this.mainMapControl.OnMapReplaced += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMapReplacedEventHandler(this.mainMapControl_OnMapReplaced);
+            // 
+            // EagleEyeMapControl
+            // 
+            this.EagleEyeMapControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.EagleEyeMapControl.Location = new System.Drawing.Point(0, 456);
+            this.EagleEyeMapControl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 1);
+            this.EagleEyeMapControl.Name = "EagleEyeMapControl";
+            this.EagleEyeMapControl.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("EagleEyeMapControl.OcxState")));
+            this.EagleEyeMapControl.Size = new System.Drawing.Size(294, 224);
+            this.EagleEyeMapControl.TabIndex = 8;
+            this.EagleEyeMapControl.OnMouseDown += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMouseDownEventHandler(this.EagleEyeMapControl_OnMouseDown);
+            this.EagleEyeMapControl.OnMouseUp += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMouseUpEventHandler(this.EagleEyeMapControl_OnMouseUp);
+            this.EagleEyeMapControl.OnMouseMove += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMouseMoveEventHandler(this.EagleEyeMapControl_OnMouseMove);
+            // 
+            // 缓冲区分析
+            // 
+            this.缓冲区分析.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.缓冲区分析.Image = ((System.Drawing.Image)(resources.GetObject("缓冲区分析.Image")));
+            this.缓冲区分析.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.缓冲区分析.Name = "缓冲区分析";
+            this.缓冲区分析.Size = new System.Drawing.Size(84, 24);
+            this.缓冲区分析.Text = "缓冲区分析";
+            this.缓冲区分析.Click += new System.EventHandler(this.缓冲区分析_Click);
             // 
             // mainForm
             // 
@@ -641,17 +690,17 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Map By 何豪";
             this.Load += new System.EventHandler(this.mainForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.mainMapControl)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.EagleEyeMapControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axTOCControl1)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axToolbarControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainMapControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EagleEyeMapControl)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -719,6 +768,11 @@
         private System.Windows.Forms.ToolStripMenuItem addWordsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 文本内容ToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox C;
+        private System.Windows.Forms.ToolStripLabel toolStripButton8;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel4;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel5;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel6;
+        private System.Windows.Forms.ToolStripLabel 缓冲区分析;
     }
 }
 

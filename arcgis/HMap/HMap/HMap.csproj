@@ -77,12 +77,10 @@
     <Reference Include="ESRI.ArcGIS.PublisherControls, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
-    <Reference Include="ESRI.ArcGIS.System, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86">
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
     <Reference Include="ESRI.ArcGIS.Version, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -101,6 +99,12 @@
     </Compile>
     <Compile Include="bookMark.Designer.cs">
       <DependentUpon>bookMark.cs</DependentUpon>
+    </Compile>
+    <Compile Include="export_file.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="export_file.Designer.cs">
+      <DependentUpon>export_file.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManageBookMarks .cs">
       <SubType>Form</SubType>
@@ -136,6 +140,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="bookMark.resx">
       <DependentUpon>bookMark.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="export_file.resx">
+      <DependentUpon>export_file.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManageBookMarks .resx">
       <DependentUpon>FormManageBookMarks .cs</DependentUpon>
@@ -273,6 +280,15 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
+    <COMReference Include="esriDisplayUI">
+      <Guid>{016DF9D3-7E81-11D2-A2D1-0000F8774FB5}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
     <COMReference Include="esriFramework">
       <Guid>{866AE5D3-530C-11D2-A2BD-0000F8774FB5}</Guid>
       <VersionMajor>10</VersionMajor>
@@ -362,6 +378,15 @@
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
       <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="esriSystem">
+      <Guid>{5E1F7BC3-67C5-4AEE-8EC6-C4B73AAC42ED}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
     <COMReference Include="esriSystemUI">
       <Guid>{4ECCA6E2-B16B-4ACA-BD17-E74CAE4C150A}</Guid>

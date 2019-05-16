@@ -3,8 +3,10 @@ using ESRI.ArcGIS.Controls;
 using ESRI.ArcGIS.DataSourcesGDB;
 using ESRI.ArcGIS.DataSourcesRaster;
 using ESRI.ArcGIS.Display;
+using ESRI.ArcGIS.esriSystem;
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Geometry;
+using ESRI.ArcGIS.Output;
 using ESRI.ArcGIS.SystemUI;
 using System;
 using System.Windows.Forms;
@@ -770,7 +772,6 @@ namespace HMap
                 //在其他位置将鼠标设为默认的样式
                 mainForm.mainform.EagleEyeMapControl.MousePointer = esriControlsMousePointer.esriPointerDefault;
             }
-
             if (bCanDrag)
             {
                 double Dx, Dy;  //记录鼠标移动的距离
@@ -796,5 +797,84 @@ namespace HMap
         }
 
         #endregion 鹰眼
+
+        //标注
+        public static void TextElementLabel(IMap pMap, IFeatureClass pFeatureClass, string fieldName)
+        {
+            IFeatureCursor pFeatureCursor = pFeatureClass.Search(null, true);
+            IFeature pFeature = pFeatureCursor.NextFeature();
+            while (pFeature != null)
+            {
+                IFields pFields = pFeature.Fields;
+                int i = pFields.FindField(fieldName);
+                //得到要素的Envelope 
+                IEnvelope pEnv = pFeature.Extent;
+                IPoint pPoint = new PointClass();
+                //确定字符要素的Geometry，它是envelope的中心点 
+                pPoint.PutCoords(pEnv.XMin + pEnv.Width / 2, pEnv.YMin + pEnv.Height / 2);
+                //新建字体对象，设置字体的属性 
+                stdole.IFontDisp pFont = new stdole.StdFontClass() as stdole.IFontDisp;
+                pFont.Name = "Arial";
+                IRgbColor pColor = new RgbColorClass();
+                pColor.Red = 110; pColor.Green = 200;
+                pColor.Blue = 60;
+                //产生一个文本符号 
+                ITextSymbol pTextSymbol = new TextSymbolClass();
+                pTextSymbol.Size = 3;
+                pTextSymbol.Font = pFont;
+                pTextSymbol.Color = pColor;
+                //产生一个文本元素对象 
+                ITextElement pTextElement = new TextElementClass();
+                pTextElement.Text = pFeature.get_Value(i).ToString();
+                pTextElement.ScaleText = true;
+                pTextElement.Symbol = pTextSymbol;
+                IElement pElement = pTextElement as IElement;
+                pElement.Geometry = pPoint;
+                IActiveView pActiveView = pMap as IActiveView;
+                IGraphicsContainer pGraphicsContainer = pMap as IGraphicsContainer;
+                //将文本元素加入地图
+                pGraphicsContainer.AddElement(pElement, 0);
+                //刷新地图（局部刷新） 
+                pActiveView.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
+                pFeature = pFeatureCursor.NextFeature();
+            }
+        }
+
+        //添加线
+        public static void AddLineElement(IGeometry pGeom, IGraphicsContainer pGraphicsContainer)
+        {
+            //确定元素的符号
+            ISimpleLineSymbol pLineSym = new SimpleLineSymbolClass();
+            IColor pColor = new RgbColorClass();
+            pColor.RGB = 2256;
+            pLineSym.Color = pColor;
+            pLineSym.Width = 1;
+            pLineSym.Style = esriSimpleLineStyle.esriSLSSolid;
+            ILineElement pLineEle = new LineElementClass();
+            pLineEle.Symbol = pLineSym;
+            //确定元素的几何位置
+            IElement pEles = pLineEle as IElement;
+            pEles.Geometry = pGeom as IPolyline;
+            pGraphicsContainer.AddElement(pEles, 0);
+            IActiveView pActiveView = pGraphicsContainer as IActiveView;
+            pActiveView.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
+        }
+
+        //输出成图
+        public static void ExportEMF(string filename, IActiveView activeView, int resol)
+        {
+            IActiveView pActiveView = activeView;
+            IExport pExport = new ExportEMFClass();
+            pExport.ExportFileName = filename;
+            pExport.Resolution = resol;
+            tagRECT exportRECT = pActiveView.ExportFrame;
+            IEnvelope pPixelBoundsEnv; pPixelBoundsEnv = new EnvelopeClass();
+            pPixelBoundsEnv.PutCoords(exportRECT.left, exportRECT.top, exportRECT.right, exportRECT.bottom);
+            pExport.PixelBounds = pPixelBoundsEnv;
+            int hDC = pExport.StartExporting();
+            pActiveView.Output(hDC, (int)pExport.Resolution, ref exportRECT, null, null);
+            pExport.FinishExporting();
+            pExport.Cleanup();
+        }
     }
 }

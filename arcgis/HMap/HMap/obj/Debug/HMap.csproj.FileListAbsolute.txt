@@ -65,3 +65,4 @@ H:\git\GIS\arcgis\HMap\HMap\bin\Debug\Interop.esriSearch.dll
 H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.csproj.CopyComplete
 H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.exe
 H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.pdb
+H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.export_file.resources
