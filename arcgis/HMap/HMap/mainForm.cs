@@ -9,7 +9,6 @@ using System.Windows.Forms;
 using ESRI.ArcGIS.DisplayUI;
 using stdole;
 using ESRI.ArcGIS.Geodatabase;
-using ESRI.ArcGIS.esriSystem;
 using ESRI.ArcGIS.Geoprocessing;
 
 namespace HMap
@@ -966,7 +965,8 @@ namespace HMap
 
         private void 缓冲区分析_Click(object sender, EventArgs e)
         {
-
+            frmBuffer frmBuffer = new frmBuffer();
+            frmBuffer.Show();
         }
     }
 }
