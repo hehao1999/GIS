@@ -89,13 +89,13 @@
             this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton8 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.缓冲区分析 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.axToolbarControl1 = new ESRI.ArcGIS.Controls.AxToolbarControl();
             this.label1 = new System.Windows.Forms.Label();
             this.mainMapControl = new ESRI.ArcGIS.Controls.AxMapControl();
             this.EagleEyeMapControl = new ESRI.ArcGIS.Controls.AxMapControl();
-            this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -604,6 +604,16 @@
             this.toolStripLabel4.Text = "输出成图";
             this.toolStripLabel4.Click += new System.EventHandler(this.ToolStripLabel4_Click);
             // 
+            // toolStripButton9
+            // 
+            this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton9.Image")));
+            this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton9.Name = "toolStripButton9";
+            this.toolStripButton9.Size = new System.Drawing.Size(88, 24);
+            this.toolStripButton9.Text = "栅格计算器";
+            this.toolStripButton9.Click += new System.EventHandler(this.ToolStripButton9_Click);
+            // 
             // 缓冲区分析
             // 
             this.缓冲区分析.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -669,16 +679,6 @@
             this.EagleEyeMapControl.OnMouseDown += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMouseDownEventHandler(this.EagleEyeMapControl_OnMouseDown);
             this.EagleEyeMapControl.OnMouseUp += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMouseUpEventHandler(this.EagleEyeMapControl_OnMouseUp);
             this.EagleEyeMapControl.OnMouseMove += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMouseMoveEventHandler(this.EagleEyeMapControl_OnMouseMove);
-            // 
-            // toolStripButton9
-            // 
-            this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton9.Image")));
-            this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton9.Name = "toolStripButton9";
-            this.toolStripButton9.Size = new System.Drawing.Size(88, 24);
-            this.toolStripButton9.Text = "栅格计算器";
-            this.toolStripButton9.Click += new System.EventHandler(this.ToolStripButton9_Click);
             // 
             // mainForm
             // 
