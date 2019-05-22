@@ -484,7 +484,6 @@
             this.toolStripLabel5,
             this.toolStripButton8,
             this.toolStripLabel4,
-            this.toolStripButton9,
             this.缓冲区分析,
             this.toolStripLabel3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 31);
@@ -785,7 +784,6 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel5;
         private System.Windows.Forms.ToolStripLabel toolStripLabel6;
         private System.Windows.Forms.ToolStripLabel 缓冲区分析;
-        private System.Windows.Forms.ToolStripButton toolStripButton9;
     }
 }
 

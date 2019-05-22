@@ -124,12 +124,6 @@
     <Compile Include="frmBuffer.designer.cs">
       <DependentUpon>frmBuffer.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmRasterCalculatornew.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmRasterCalculatornew.designer.cs">
-      <DependentUpon>FrmRasterCalculatornew.cs</DependentUpon>
-    </Compile>
     <Compile Include="layerManage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,9 +158,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmBuffer.resx">
       <DependentUpon>frmBuffer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmRasterCalculatornew.resx">
-      <DependentUpon>FrmRasterCalculatornew.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="layerManage.resx">
       <DependentUpon>layerManage.cs</DependentUpon>

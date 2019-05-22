@@ -74,4 +74,17 @@ H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.csproj.CoreCompileInputs.cache
 H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.csproj.CopyComplete
 H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.exe
 H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.pdb
+<<<<<<< HEAD
 H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.FrmRasterCalculatornew.resources
+=======
+H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.export_file.resources
+H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.frmBuffer.resources
+H:\git\GIS\arcgis\HMap\HMap\obj\Debug\Interop.UICONTROLSLib.dll
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.ADF.dll
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.AnalysisTools.dll
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Geoprocessor.dll
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.ADF.xml
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.AnalysisTools.xml
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.AnalysisTools.dll.config
+H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Geoprocessor.xml
+>>>>>>> parent of a43e808... 增加栅格计算器

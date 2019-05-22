@@ -980,11 +980,5 @@ namespace HMap
             frmBuffer frmBuffer = new frmBuffer();
             frmBuffer.Show();
         }
-
-        private void ToolStripButton9_Click(object sender, EventArgs e)
-        {
-            FrmRasterCalculatornew frmRasterCalculatornew = new FrmRasterCalculatornew(mainform,mainform.mainMapControl.Map);
-            frmRasterCalculatornew.Show();
-        }
     }
 }
