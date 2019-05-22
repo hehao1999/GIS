@@ -17,17 +17,16 @@ namespace HMap
     {
         //初始化
         private FormMeasureResult frmMeasureResult = null;   //量算结果窗体
-
         private INewLineFeedback pNewLineFeedback;           //追踪线对象
         private INewPolygonFeedback pNewPolygonFeedback;     //追踪面对象
         private IPoint pPointPt = null;                      //鼠标点击点
         private IPoint pMovePt = null;                       //鼠标移动时的当前点
         private double dToltalLength = 0;                    //量测总长度
         private double dSegmentLength = 0;                   //片段距离
-        private IPointCollection pAreaPointCol = new MultipointClass();  //面积量算时画的点进行存储；
+        private IPointCollection pAreaPointCol = new MultipointClass();  //面积量算时画的点进行存储；  
         private string sMapUnits = "未知单位";             //地图单位变量
         private object missing = Type.Missing;
-        private string pMouseOperate = null;
+        string pMouseOperate = null;
         public static mainForm mainform;  //实例化窗体
         public static CustomizeDialog m_CustomizeDialog; //自定义控件绑定
         private int flag = 0; //工具标志
@@ -262,8 +261,8 @@ namespace HMap
                 mainMapControl.FlashShape(pGeo, 25, 200, symbol);
                 mainMapControl.ActiveView.Refresh();
             }
-        }
 
+        }
         //打开个人地理数据库
         private void openFileDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -390,6 +389,7 @@ namespace HMap
             }
         }
 
+
         //面积量测
         private void AreaMeasureToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -426,7 +426,7 @@ namespace HMap
             {
                 ;
             }
-
+            
             pMovePt = (mainMapControl.Map as IActiveView).ScreenDisplay.DisplayTransformation.ToMapPoint(e.x, e.y);
 
             if (pMouseOperate == "MeasureLength")
@@ -531,65 +531,51 @@ namespace HMap
                 case esriUnits.esriCentimeters:
                     sMapUnits = "厘米";
                     break;
-
                 case esriUnits.esriDecimalDegrees:
                     sMapUnits = "度";
                     break;
-
                 case esriUnits.esriDecimeters:
                     sMapUnits = "分米";
                     break;
-
                 case esriUnits.esriFeet:
                     sMapUnits = "尺";
                     break;
-
                 case esriUnits.esriInches:
                     sMapUnits = "英寸";
                     break;
-
                 case esriUnits.esriKilometers:
                     sMapUnits = "千米";
                     break;
-
                 case esriUnits.esriMeters:
                     sMapUnits = "米";
                     break;
-
                 case esriUnits.esriMiles:
                     sMapUnits = "英里";
                     break;
-
                 case esriUnits.esriMillimeters:
                     sMapUnits = "毫米";
                     break;
-
                 case esriUnits.esriNauticalMiles:
                     sMapUnits = "海里";
                     break;
-
                 case esriUnits.esriPoints:
                     sMapUnits = "点";
                     break;
-
                 case esriUnits.esriUnitsLast:
                     sMapUnits = "UnitsLast";
                     break;
-
                 case esriUnits.esriUnknownUnits:
                     sMapUnits = "单位未知";
                     break;
-
                 case esriUnits.esriYards:
                     sMapUnits = "码";
                     break;
-
                 default:
                     break;
             }
             return sMapUnits;
         }
-
+        
         //绘制面
         public IPolygon DrawPolygon(AxMapControl mapCtrl)
         {
@@ -633,10 +619,10 @@ namespace HMap
         private long RGBtoLong(int Red, int Green, int Blue)
         {
             return Red + (0x100 * Green) + (0x10000 * Blue);
-            //return Red + (256*Green) + (65536*Blue);
+            //return Red + (256*Green) + (65536*Blue); 
         }
 
-        //LONG转RGB
+        //LONG转RGB 
         private short[] LongToRGB(long RGBlong)
         {
             short[] pbyte = new short[3];
@@ -684,12 +670,12 @@ namespace HMap
         {
             try
             {
-                //获得点图层，要求当前地图文档第一个图层为点图层
+                //获得点图层，要求当前地图文档第一个图层为点图层 
                 IFeatureLayer layer;
                 layer = mainMapControl.get_Layer(0) as IFeatureLayer;
-                //QI到IGeoFeatureLayer
+                //QI到IGeoFeatureLayer 
                 IGeoFeatureLayer geoFeatureLayer = layer as IGeoFeatureLayer;
-                //新建SimpleRendererClass对象
+                //新建SimpleRendererClass对象 
                 SimpleRenderer simpleRender = new SimpleRendererClass();
                 ISimpleMarkerSymbol pMarkerSymbol;
                 IColor pColor = new RgbColorClass();
@@ -715,10 +701,10 @@ namespace HMap
         {
             try
             {
-                //获得点图层，要求当前地图文档第一个图层为点图层
+                //获得点图层，要求当前地图文档第一个图层为点图层 
                 IFeatureLayer layer;
                 layer = mainMapControl.get_Layer(0) as IFeatureLayer;
-                //QI到IGeoFeatureLayer
+                //QI到IGeoFeatureLayer 
                 IGeoFeatureLayer geoFeatureLayer = layer as IGeoFeatureLayer;
                 SimpleRenderer simpleRender = new SimpleRendererClass();
                 IArrowMarkerSymbol pMarkerSymbol;
@@ -748,10 +734,10 @@ namespace HMap
         {
             try
             {
-                //获得点图层，要求当前地图文档第一个图层为点图层
+                //获得点图层，要求当前地图文档第一个图层为点图层 
                 IFeatureLayer layer;
                 layer = mainMapControl.get_Layer(0) as IFeatureLayer;
-                //QI到IGeoFeatureLayer
+                //QI到IGeoFeatureLayer 
                 IGeoFeatureLayer geoFeatureLayer = layer as IGeoFeatureLayer;
                 SimpleRenderer simpleRender = new SimpleRendererClass();
                 ICharacterMarkerSymbol pCharacterMarkerSymbol = new CharacterMarkerSymbolClass();
@@ -764,7 +750,7 @@ namespace HMap
                 pCharacterMarkerSymbol.Color = pColor;
                 pCharacterMarkerSymbol.Size = 20;
                 pCharacterMarkerSymbol.CharacterIndex = 55;
-                //ASCII55对应数字7
+                //ASCII55对应数字7 
                 simpleRender.Symbol = pCharacterMarkerSymbol as ISymbol;
                 geoFeatureLayer.Renderer = simpleRender as IFeatureRenderer;
                 mainMapControl.Refresh();
@@ -781,10 +767,10 @@ namespace HMap
         {
             try
             {
-                //获得点图层，要求当前地图文档第一个图层为点图层
+                //获得点图层，要求当前地图文档第一个图层为点图层 
                 IFeatureLayer layer;
                 layer = mainMapControl.get_Layer(0) as IFeatureLayer;
-                //QI到IGeoFeatureLayer
+                //QI到IGeoFeatureLayer 
                 IGeoFeatureLayer geoFeatureLayer = layer as IGeoFeatureLayer;
                 SimpleRenderer simpleRender = new SimpleRendererClass();
                 //指定图片存放的位置
@@ -806,7 +792,7 @@ namespace HMap
                     geoFeatureLayer.Renderer = simpleRender as IFeatureRenderer;
                     mainMapControl.Refresh();
                     axTOCControl1.Update();
-                }
+                }                   
             }
             catch
             {
@@ -819,10 +805,10 @@ namespace HMap
         {
             try
             {
-                //获得点图层，要求当前地图文档第一个图层为点图层
+                //获得点图层，要求当前地图文档第一个图层为点图层 
                 IFeatureLayer layer;
                 layer = mainMapControl.get_Layer(0) as IFeatureLayer;
-                //QI到IGeoFeatureLayer
+                //QI到IGeoFeatureLayer 
                 IGeoFeatureLayer geoFeatureLayer = layer as IGeoFeatureLayer;
                 SimpleRenderer simpleRender = new SimpleRendererClass();
                 //创建第一组成成分点符号的颜色
@@ -859,10 +845,10 @@ namespace HMap
         //简单线符号化
         private void SimpleLineSymbolToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //获得线图层，要求当前地图文档第二个图层为线图层
+            //获得线图层，要求当前地图文档第二个图层为线图层 
             IFeatureLayer layer;
             layer = mainMapControl.get_Layer(1) as IFeatureLayer;
-            //QI到IGeoFeatureLayer
+            //QI到IGeoFeatureLayer 
             IGeoFeatureLayer geoFeatureLayer = layer as IGeoFeatureLayer;
             ISimpleRenderer simpleRender = new SimpleRendererClass();
             IColor pColor = new RgbColorClass();
@@ -880,7 +866,7 @@ namespace HMap
         //简单填充符号化
         private void SimpleFillSymbolToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //获得面图层，要求当前地图文档第三个图层为面图层
+            //获得面图层，要求当前地图文档第三个图层为面图层 
             IFeatureLayer layer = mainMapControl.get_Layer(2) as IFeatureLayer;
             IGeoFeatureLayer geoFeatureLayer = layer as IGeoFeatureLayer;
             ISimpleRenderer simpleRender = new SimpleRendererClass();
@@ -903,12 +889,14 @@ namespace HMap
 
         private void AddWordsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+           
         }
 
         private void 文本内容ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             flag = 0;
         }
+
 
         //符号选择器
         private void AxTOCControl1_OnDoubleClick(object sender, ITOCControlEvents_OnDoubleClickEvent e)
@@ -959,7 +947,7 @@ namespace HMap
         private void ToolStripLabel4_Click(object sender, EventArgs e)
         {
             IHookHelper map_hookHelper = new HookHelperClass();
-            //参数赋值
+            //参数赋值 
             map_hookHelper.Hook = mainMapControl.Object;
             export_file frmExportDlg = new export_file(map_hookHelper);
             frmExportDlg.Show();
@@ -979,6 +967,12 @@ namespace HMap
         {
             frmBuffer frmBuffer = new frmBuffer();
             frmBuffer.Show();
+        }
+
+        private void ToolStripButton9_Click(object sender, EventArgs e)
+        {
+            FrmRasterCalculatornew frmRasterCalculatornew = new FrmRasterCalculatornew(mainform,mainform.mainMapControl.Map);
+            frmRasterCalculatornew.Show();
         }
     }
 }

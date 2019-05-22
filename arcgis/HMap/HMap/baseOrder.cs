@@ -758,20 +758,28 @@ namespace HMap
 
         public static void move_rect(IMapControlEvents2_OnMouseMoveEvent e)
         {//移动鹰眼矩形框
-            if (e.mapX > pEnv.XMin && e.mapY > pEnv.YMin && e.mapX < pEnv.XMax && e.mapY < pEnv.YMax)
+            try
             {
-                //如果鼠标移动到矩形框中，鼠标换成小手，表示可以拖动
-                mainForm.mainform.EagleEyeMapControl.MousePointer = esriControlsMousePointer.esriPointerHand;
-                if (e.button == 2)  //如果在内部按下鼠标右键，将鼠标演示设置为默认样式
+                if (e.mapX > pEnv.XMin && e.mapY > pEnv.YMin && e.mapX < pEnv.XMax && e.mapY < pEnv.YMax)
                 {
+                    //如果鼠标移动到矩形框中，鼠标换成小手，表示可以拖动
+                    mainForm.mainform.EagleEyeMapControl.MousePointer = esriControlsMousePointer.esriPointerHand;
+                    if (e.button == 2)  //如果在内部按下鼠标右键，将鼠标演示设置为默认样式
+                    {
+                        mainForm.mainform.EagleEyeMapControl.MousePointer = esriControlsMousePointer.esriPointerDefault;
+                    }
+                }
+                else
+                {
+                    //在其他位置将鼠标设为默认的样式
                     mainForm.mainform.EagleEyeMapControl.MousePointer = esriControlsMousePointer.esriPointerDefault;
                 }
             }
-            else
+            catch
             {
-                //在其他位置将鼠标设为默认的样式
-                mainForm.mainform.EagleEyeMapControl.MousePointer = esriControlsMousePointer.esriPointerDefault;
+                ;
             }
+            
             if (bCanDrag)
             {
                 double Dx, Dy;  //记录鼠标移动的距离
