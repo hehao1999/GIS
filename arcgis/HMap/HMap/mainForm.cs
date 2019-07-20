@@ -901,37 +901,79 @@ namespace HMap
         //符号选择器
         private void AxTOCControl1_OnDoubleClick(object sender, ITOCControlEvents_OnDoubleClickEvent e)
         {
-            esriTOCControlItem toccItem = esriTOCControlItem.esriTOCControlItemNone;
-            ILayer iLayer = null;
-            IBasicMap iBasicMap = null;
-            object unk = null;
-            object data = null;
-            if (e.button == 1)
+            ILayer pLayer = null;
+            IBasicMap pMap = null;
+            object legendgp = null;
+            object index = null;
+            esriTOCControlItem pItem = esriTOCControlItem.esriTOCControlItemNone;
+
+            ILegendGroup pLegendGroup = new LegendGroup();
+            ILegendClass pLegendClass = new LegendClass();
+
+            try
             {
-                axTOCControl1.HitTest(e.x, e.y, ref toccItem, ref iBasicMap, ref iLayer, ref unk, ref data);
-                System.Drawing.Point pos = new System.Drawing.Point(e.x, e.y);
-                if (toccItem == esriTOCControlItem.esriTOCControlItemLegendClass)
+                axTOCControl1.HitTest(e.x, e.y, ref pItem, ref pMap, ref pLayer, ref legendgp, ref index);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            pLegendGroup = (ILegendGroup)legendgp;
+     
+            if (pItem == esriTOCControlItem.esriTOCControlItemLegendClass)
+            {
+                pLegendClass = pLegendGroup.get_Class(Convert.ToInt32(index.ToString()));
+                if (pLegendClass == null)
                 {
-                    ILegendClass pLC = new LegendClassClass();
-                    ILegendGroup pLG = new LegendGroupClass();
-                    if (unk is ILegendGroup)
+                    return;
+                }
+                FrmSymbolLibrary dlg = new FrmSymbolLibrary(pLegendClass, pLayer);
+                if (dlg != null)
+                {
+                    try
                     {
-                        pLG = (ILegendGroup)unk;
+                        dlg.ShowDialog();
+                        axTOCControl1.Update();
+                        mainMapControl.Refresh(esriViewDrawPhase.esriViewGeography, null, null);
                     }
-                    pLC = pLG.get_Class((int)data);
-                    ISymbol pSym = pLC.Symbol;
-                    ISymbolSelector pSS = new SymbolSelectorClass();
-                    bool bOK = false;
-                    pSS.AddSymbol(pSym);
-                    bOK = pSS.SelectSymbol(0);
-                    if (bOK)
+                    catch (Exception)
                     {
-                        pLC.Symbol = pSS.GetSymbolAt(0);
+
+                        throw;
                     }
-                    mainMapControl.ActiveView.Refresh();
-                    axTOCControl1.Refresh();
                 }
             }
+            //esriTOCControlItem toccItem = esriTOCControlItem.esriTOCControlItemNone;
+            //ILayer iLayer = null;
+            //IBasicMap iBasicMap = null;
+            //object unk = null;
+            //object data = null;
+            //if (e.button == 1)
+            //{
+            //    axTOCControl1.HitTest(e.x, e.y, ref toccItem, ref iBasicMap, ref iLayer, ref unk, ref data);
+            //    System.Drawing.Point pos = new System.Drawing.Point(e.x, e.y);
+            //    if (toccItem == esriTOCControlItem.esriTOCControlItemLegendClass)
+            //    {
+            //        ILegendClass pLC = new LegendClassClass();
+            //        ILegendGroup pLG = new LegendGroupClass();
+            //        if (unk is ILegendGroup)
+            //        {
+            //            pLG = (ILegendGroup)unk;
+            //        }
+            //        pLC = pLG.get_Class((int)data);
+            //        ISymbol pSym = pLC.Symbol;
+            //        ISymbolSelector pSS = new SymbolSelectorClass();
+            //        bool bOK = false;
+            //        pSS.AddSymbol(pSym);
+            //        bOK = pSS.SelectSymbol(0);
+            //        if (bOK)
+            //        {
+            //            pLC.Symbol = pSS.GetSymbolAt(0);
+            //        }
+            //        mainMapControl.ActiveView.Refresh();
+            //        axTOCControl1.Refresh();
+            //    }
+            //}
         }
 
         private void ToolStripButton8_Click(object sender, EventArgs e)

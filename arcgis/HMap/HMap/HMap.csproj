@@ -130,6 +130,12 @@
     <Compile Include="FrmRasterCalculatornew.designer.cs">
       <DependentUpon>FrmRasterCalculatornew.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSymbolLibrary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSymbolLibrary.designer.cs">
+      <DependentUpon>FrmSymbolLibrary.cs</DependentUpon>
+    </Compile>
     <Compile Include="layerManage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmRasterCalculatornew.resx">
       <DependentUpon>FrmRasterCalculatornew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSymbolLibrary.resx">
+      <DependentUpon>FrmSymbolLibrary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="layerManage.resx">
       <DependentUpon>layerManage.cs</DependentUpon>

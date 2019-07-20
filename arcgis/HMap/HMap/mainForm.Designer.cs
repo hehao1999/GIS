@@ -52,9 +52,9 @@
             this.addBookMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageBookMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addRasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.boxSelectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scalesToSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addRasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.findByAttributeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,7 +69,6 @@
             this.multiLayerMarkerSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.simpleLineSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.simpleFillSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addWordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.文本内容ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.C = new System.Windows.Forms.ToolStripTextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -79,7 +78,6 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
@@ -292,15 +290,22 @@
             // customToolsToolStripMenuItem
             // 
             this.customToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addRasterToolStripMenuItem,
             this.boxSelectToolStripMenuItem,
             this.scalesToSelectionToolStripMenuItem,
-            this.addRasterToolStripMenuItem,
             this.clearSelectionToolStripMenuItem,
             this.openFileDatabaseToolStripMenuItem,
             this.findByAttributeToolStripMenuItem});
             this.customToolsToolStripMenuItem.Name = "customToolsToolStripMenuItem";
             this.customToolsToolStripMenuItem.Size = new System.Drawing.Size(121, 27);
             this.customToolsToolStripMenuItem.Text = "custom tools";
+            // 
+            // addRasterToolStripMenuItem
+            // 
+            this.addRasterToolStripMenuItem.Name = "addRasterToolStripMenuItem";
+            this.addRasterToolStripMenuItem.Size = new System.Drawing.Size(282, 28);
+            this.addRasterToolStripMenuItem.Text = "Add Raster";
+            this.addRasterToolStripMenuItem.Click += new System.EventHandler(this.addRasterToolStripMenuItem_Click);
             // 
             // boxSelectToolStripMenuItem
             // 
@@ -315,13 +320,6 @@
             this.scalesToSelectionToolStripMenuItem.Size = new System.Drawing.Size(282, 28);
             this.scalesToSelectionToolStripMenuItem.Text = "Zoom To Selection";
             this.scalesToSelectionToolStripMenuItem.Click += new System.EventHandler(this.ScalesToSelectionToolStripMenuItem_Click);
-            // 
-            // addRasterToolStripMenuItem
-            // 
-            this.addRasterToolStripMenuItem.Name = "addRasterToolStripMenuItem";
-            this.addRasterToolStripMenuItem.Size = new System.Drawing.Size(282, 28);
-            this.addRasterToolStripMenuItem.Text = "Add Raster";
-            this.addRasterToolStripMenuItem.Click += new System.EventHandler(this.addRasterToolStripMenuItem_Click);
             // 
             // clearSelectionToolStripMenuItem
             // 
@@ -376,8 +374,7 @@
             this.pictureMarkerSymbolToolStripMenuItem,
             this.multiLayerMarkerSymbolToolStripMenuItem,
             this.simpleLineSymbolToolStripMenuItem,
-            this.simpleFillSymbolToolStripMenuItem,
-            this.addWordsToolStripMenuItem});
+            this.simpleFillSymbolToolStripMenuItem});
             this.symbolToolStripMenuItem.Name = "symbolToolStripMenuItem";
             this.symbolToolStripMenuItem.Size = new System.Drawing.Size(78, 27);
             this.symbolToolStripMenuItem.Text = "Symbol";
@@ -431,13 +428,6 @@
             this.simpleFillSymbolToolStripMenuItem.Text = "Simple Fill Symbol";
             this.simpleFillSymbolToolStripMenuItem.Click += new System.EventHandler(this.SimpleFillSymbolToolStripMenuItem_Click);
             // 
-            // addWordsToolStripMenuItem
-            // 
-            this.addWordsToolStripMenuItem.Name = "addWordsToolStripMenuItem";
-            this.addWordsToolStripMenuItem.Size = new System.Drawing.Size(304, 28);
-            this.addWordsToolStripMenuItem.Text = "Add Words";
-            this.addWordsToolStripMenuItem.Click += new System.EventHandler(this.AddWordsToolStripMenuItem_Click);
-            // 
             // 文本内容ToolStripMenuItem
             // 
             this.文本内容ToolStripMenuItem.Name = "文本内容ToolStripMenuItem";
@@ -474,7 +464,6 @@
             this.toolStripButton1,
             this.toolStripButton2,
             this.toolStripButton3,
-            this.toolStripSeparator2,
             this.toolStripButton4,
             this.toolStripButton5,
             this.toolStripButton6,
@@ -508,6 +497,7 @@
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton1.Text = "打开";
             this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1_Click);
             // 
             // toolStripButton2
@@ -518,6 +508,7 @@
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton2.Text = "添加数据";
             this.toolStripButton2.Click += new System.EventHandler(this.ToolStripButton2_Click);
             // 
             // toolStripButton3
@@ -528,12 +519,8 @@
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton3.Text = "保存";
             this.toolStripButton3.Click += new System.EventHandler(this.ToolStripButton3_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
             // toolStripButton4
             // 
@@ -542,6 +529,7 @@
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
             this.toolStripButton4.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton4.Text = "放大";
             this.toolStripButton4.Click += new System.EventHandler(this.ToolStripButton4_Click);
             // 
             // toolStripButton5
@@ -551,6 +539,7 @@
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
             this.toolStripButton5.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton5.Text = "缩小";
             this.toolStripButton5.Click += new System.EventHandler(this.ToolStripButton5_Click);
             // 
             // toolStripButton6
@@ -560,6 +549,7 @@
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
             this.toolStripButton6.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton6.Text = "漫游";
             this.toolStripButton6.Click += new System.EventHandler(this.ToolStripButton6_Click);
             // 
             // toolStripButton7
@@ -569,6 +559,7 @@
             this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton7.Name = "toolStripButton7";
             this.toolStripButton7.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton7.Text = "全局视图";
             this.toolStripButton7.Click += new System.EventHandler(this.ToolStripButton7_Click);
             // 
             // toolStripLabel2
@@ -578,49 +569,53 @@
             // 
             // toolStripLabel6
             // 
+            this.toolStripLabel6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel6.Image")));
             this.toolStripLabel6.Name = "toolStripLabel6";
-            this.toolStripLabel6.Size = new System.Drawing.Size(24, 24);
-            this.toolStripLabel6.Text = "闪";
+            this.toolStripLabel6.Size = new System.Drawing.Size(59, 24);
+            this.toolStripLabel6.Text = "闪烁";
             this.toolStripLabel6.Click += new System.EventHandler(this.ToolStripLabel6_Click);
             // 
             // toolStripLabel5
             // 
+            this.toolStripLabel5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel5.Image")));
             this.toolStripLabel5.Name = "toolStripLabel5";
-            this.toolStripLabel5.Size = new System.Drawing.Size(39, 24);
+            this.toolStripLabel5.Size = new System.Drawing.Size(59, 24);
             this.toolStripLabel5.Text = "绘线";
             this.toolStripLabel5.Click += new System.EventHandler(this.ToolStripLabel5_Click);
             // 
             // toolStripButton8
             // 
+            this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
             this.toolStripButton8.Name = "toolStripButton8";
-            this.toolStripButton8.Size = new System.Drawing.Size(39, 24);
+            this.toolStripButton8.Size = new System.Drawing.Size(59, 24);
             this.toolStripButton8.Text = "标注";
             this.toolStripButton8.Click += new System.EventHandler(this.ToolStripButton8_Click);
             // 
             // toolStripLabel4
             // 
+            this.toolStripLabel4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel4.Image")));
             this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(69, 24);
-            this.toolStripLabel4.Text = "输出成图";
+            this.toolStripLabel4.Size = new System.Drawing.Size(89, 24);
+            this.toolStripLabel4.Text = "导出图片";
             this.toolStripLabel4.Click += new System.EventHandler(this.ToolStripLabel4_Click);
             // 
             // toolStripButton9
             // 
-            this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton9.Image")));
             this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton9.Name = "toolStripButton9";
-            this.toolStripButton9.Size = new System.Drawing.Size(88, 24);
+            this.toolStripButton9.Size = new System.Drawing.Size(29, 24);
             this.toolStripButton9.Text = "栅格计算器";
             this.toolStripButton9.Click += new System.EventHandler(this.ToolStripButton9_Click);
             // 
             // 缓冲区分析
             // 
-            this.缓冲区分析.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.缓冲区分析.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.缓冲区分析.Image = ((System.Drawing.Image)(resources.GetObject("缓冲区分析.Image")));
             this.缓冲区分析.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.缓冲区分析.Name = "缓冲区分析";
-            this.缓冲区分析.Size = new System.Drawing.Size(84, 24);
+            this.缓冲区分析.Size = new System.Drawing.Size(20, 24);
             this.缓冲区分析.Text = "缓冲区分析";
             this.缓冲区分析.Click += new System.EventHandler(this.缓冲区分析_Click);
             // 
@@ -761,7 +756,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.ToolStripButton toolStripButton6;
         private System.Windows.Forms.ToolStripButton toolStripButton7;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.ToolStripMenuItem measuresToolStripMenuItem;
@@ -777,7 +771,6 @@
         private System.Windows.Forms.ToolStripMenuItem multiLayerMarkerSymbolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem simpleLineSymbolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem simpleFillSymbolToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addWordsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 文本内容ToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox C;
         private System.Windows.Forms.ToolStripLabel toolStripButton8;

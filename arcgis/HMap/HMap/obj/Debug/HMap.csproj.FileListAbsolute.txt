@@ -76,3 +76,4 @@ H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.AnalysisTools.dll.config
 H:\git\GIS\arcgis\HMap\HMap\bin\Debug\ESRI.ArcGIS.Geoprocessor.xml
 H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.csprojAssemblyReference.cache
 H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.FrmRasterCalculatornew.resources
+H:\git\GIS\arcgis\HMap\HMap\obj\Debug\HMap.FrmSymbolLibrary.resources
